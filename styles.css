@@ -610,3 +610,9 @@ body:not(.check-in-open) .hero-capabilities{
   body:not(.check-in-open) .hero-profile-card,
   body:not(.check-in-open) .hero-capabilities{transition:none}
 }
+
+/* Keep the hero intro and profile card in separate columns on landscape tablets. */
+@media(max-width:1280px) and (min-width:1001px){
+  .hero-intro{left:34%;width:29%;top:22%}
+  .hero-profile-card{right:3%;width:30%;top:50%}
+}

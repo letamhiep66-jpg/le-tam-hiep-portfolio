@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#090923" />
-  <meta name="description" content="Portfolio tương tác của Lê Tam Hiệp — khám phá hành trình Marketing qua trải nghiệm như một trò chơi." />
+  <meta name="description" content="Portfolio của Lê Tam Hiệp — hành trình khám phá Marketing, sáng tạo, dữ liệu và phát triển." />
   <title>Lê Tam Hiệp — Interactive Portfolio</title>
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJnIiB4MT0iMCIgeDI9IjEiIHkxPSIwIiB5Mj0iMSI+PHN0b3Agc3RvcC1jb2xvcj0iI2Y0ZGZiNiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjYjM5YWZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNzZiOWY2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTgiIGZpbGw9IiMwYjBkMjgiLz48cGF0aCBkPSJNMzIgNSAzNyAyNSA1OCAzMiAzNyAzNyAzMiA1OSAyNyAzNyA2IDMyIDI3IDI1WiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ1cmwoI2cpIiBzdHJva2Utd2lkdGg9IjIuNSIvPjxwYXRoIGQ9Im0zMiAxNyAzIDEyIDEyIDMtMTIgMy0zIDEyLTMtMTItMTItMyAxMi0zWiIgZmlsbD0idXJsKCNnKSIvPjwvc3ZnPgo=" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,31 +22,69 @@
 
       <!-- Accessible, functional navigation aligned over the reference artwork. -->
       <header class="topbar">
-        <a class="brand-hotspot" href="#home" aria-label="Lê Tam Hiệp — Trang chủ"></a>
+        <a class="brand-hotspot" href="#home" aria-label="Lê Tam Hiệp — Trang chủ">
+          <span class="brand-emblem" aria-hidden="true">✧</span>
+          <span class="brand-copy"><strong>Lê Tam Hiệp</strong><small>PORTFOLIO · 2026</small></span>
+        </a>
         <nav class="main-nav" aria-label="Điều hướng chính">
-          <a class="nav-home" href="#home" aria-label="Trang chủ"></a>
-          <a class="nav-journey" href="#journey" aria-label="Hành trình"></a>
-          <a class="nav-skills" href="#skills" aria-label="Kỹ năng"></a>
-          <a class="nav-projects" href="#projects" aria-label="Dự án"></a>
-          <a class="nav-certificates" href="#certificates" aria-label="Chứng chỉ"></a>
-          <a class="nav-contact" href="#contact" aria-label="Liên hệ"></a>
+          <a class="nav-home" href="#home" aria-label="Trang chủ"><span>Trang chủ</span></a>
+          <a class="nav-journey" href="#journey" aria-label="Hành trình"><span>Hành trình</span></a>
+          <a class="nav-skills" href="#skills" aria-label="Kỹ năng"><span>Kỹ năng</span></a>
+          <a class="nav-projects" href="#projects" aria-label="Dự án"><span>Dự án</span></a>
+          <a class="nav-certificates" href="#certificates" aria-label="Chứng chỉ"><span>Chứng chỉ</span></a>
+          <a class="nav-contact" href="#contact" aria-label="Liên hệ"><span>Liên hệ</span></a>
         </nav>
-        <button class="sound-toggle" id="motionToggle" type="button" aria-pressed="true" aria-label="Bật hoặc tắt hiệu ứng chuyển động"><span class="sound-symbol">♫</span><span class="sound-state">ON</span><span class="toggle-dot"></span></button>
+        <button class="sound-toggle" id="motionToggle" type="button" aria-pressed="true" aria-label="Bật hoặc tắt hiệu ứng chuyển động"><span class="sound-symbol" aria-hidden="true">✦</span><span class="sound-state">ON</span><span class="toggle-dot"></span></button>
       </header>
 
       <p class="sr-only" id="visitorGreeting" aria-live="polite"></p>
 
+      <section class="hero-intro" aria-label="Giới thiệu Lê Tam Hiệp">
+        <p class="hero-eyebrow"><span aria-hidden="true">✦</span> MARKETING · CREATIVE · GROWTH</p>
+        <p class="hero-greeting">Xin chào, mình là</p>
+        <h1>Lê Tam Hiệp <span aria-hidden="true">✧</span></h1>
+        <p class="hero-role">Marketing Enthusiast <i>·</i> Growth Mindset</p>
+        <p class="hero-description">Mình yêu thích khám phá insight, kể chuyện bằng ý tưởng và biến những điều học được thành trải nghiệm có giá trị.</p>
+        <div class="hero-actions">
+          <button class="hero-primary-action" id="journeyButton" type="button">Bắt đầu hành trình <span aria-hidden="true">↗</span></button>
+          <a class="hero-secondary-action" href="#projects">Khám phá dự án <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="hero-motto">“Dream Bigger · Create More · Achieve Together”</p>
+      </section>
+
+      <aside class="hero-profile-card" aria-label="Thông tin cá nhân">
+        <div class="profile-card-heading"><span aria-hidden="true">✧</span> THÔNG TIN CÁ NHÂN</div>
+        <div class="profile-card-main">
+          <div class="profile-avatar" role="img" aria-label="Nhân vật minh họa trong Portfolio"></div>
+          <div class="profile-card-copy">
+            <h2>Lê Tam Hiệp <span aria-hidden="true">✦</span></h2>
+            <p>Marketing Enthusiast</p>
+            <ul>
+              <li><span aria-hidden="true">⌂</span> Hà Nội, Việt Nam</li>
+              <li><span aria-hidden="true">◇</span> Đại học Ngoại thương</li>
+              <li><span aria-hidden="true">✧</span> Growth Mindset</li>
+            </ul>
+          </div>
+        </div>
+        <blockquote>Luôn học hỏi, luôn sáng tạo và không ngừng tiến về phía trước.</blockquote>
+      </aside>
+
+      <div class="hero-capabilities" aria-label="Lĩnh vực quan tâm">
+        <article><span aria-hidden="true">↗</span><div><strong>Marketing</strong><small>Chiến lược & tăng trưởng</small></div></article>
+        <article><span aria-hidden="true">✎</span><div><strong>Creative</strong><small>Nội dung & kể chuyện</small></div></article>
+        <article><span aria-hidden="true">◈</span><div><strong>Data-driven</strong><small>Insight & phân tích</small></div></article>
+        <article><span aria-hidden="true">✦</span><div><strong>Digital</strong><small>Trải nghiệm & công nghệ</small></div></article>
+      </div>
+
       <!-- The original CTA artwork is underneath this real, accessible button. -->
-      <button class="journey-hotspot" id="journeyButton" type="button" aria-label="Bắt đầu hành trình khám phá Portfolio">
-        <span class="journey-hotspot-label">Bắt đầu hành trình <b>→</b></span>
-      </button>
+      
 
       <div class="social-hotspots" aria-label="Liên hệ">
-        <a href="#contact" aria-label="LinkedIn — thông tin liên hệ"></a>
-        <a href="#contact" aria-label="GitHub — thông tin liên hệ"></a>
-        <a href="#contact" aria-label="Email — thông tin liên hệ"></a>
+        <a href="#contact" aria-label="LinkedIn — cập nhật liên kết liên hệ" title="LinkedIn">in</a>
+        <a href="#contact" aria-label="GitHub — cập nhật liên kết liên hệ" title="GitHub">GH</a>
+        <a href="#contact" aria-label="Email — cập nhật địa chỉ email" title="Email">✉</a>
       </div>
-      <button class="scroll-hotspot" id="scrollButton" type="button" aria-label="Cuộn xuống để khám phá thêm"></button>
+      <button class="scroll-hotspot" id="scrollButton" type="button" aria-label="Cuộn xuống để khám phá thêm"><span aria-hidden="true">↓</span> Cuộn xuống để khám phá <b aria-hidden="true">✧</b></button>
 
       <div class="welcome-overlay" id="welcomeOverlay">
         <div class="welcome-backdrop"></div>

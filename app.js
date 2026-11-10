@@ -14,11 +14,13 @@ fields.year.max = String(currentYear);
 document.body.classList.add('check-in-open');
 
 function honorificFor(year, gender) {
-  if (year > 2005) return 'em';
   if (year === 2005) return 'bạn';
-  if (gender === 'male') return 'anh';
-  if (gender === 'female') return 'chị';
-  return 'bạn';
+  if (year > 2005) {
+    if (gender === 'male') return 'anh';
+    if (gender === 'female') return 'chị';
+    return 'bạn';
+  }
+  return 'em';
 }
 
 function showToast(message) {

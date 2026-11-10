@@ -420,3 +420,193 @@ body.motion-paused .hero-profile-card,body.motion-paused .hero-capabilities arti
 @media(prefers-reduced-motion:reduce){
   .hero-profile-card{animation:none}
 }
+
+
+/* ==========================================================
+   RESPONSIVE + INTERACTION REPAIR
+   Use the full-resolution reference asset already in /assets.
+   ========================================================== */
+.reference-art{
+  background-image:url('assets/portfolio-home-reference.webp') !important;
+  background-position:center center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  image-rendering:auto;
+  transform:none;
+}
+.game-home{
+  width:100%;
+  height:100svh;
+  min-height:760px;
+  max-height:980px;
+  overflow:hidden;
+}
+.topbar{height:78px;min-height:78px}
+.main-nav{left:27%;width:58%;gap:7px}
+.main-nav a{min-width:0;padding-inline:7px;font-size:clamp(10px,.78vw,13px)}
+.hero-intro{
+  left:34%;
+  top:25%;
+  width:min(29%,560px);
+  max-width:560px;
+  padding:clamp(16px,1.5vw,24px);
+}
+.hero-intro h1{font-size:clamp(36px,3.55vw,60px);overflow-wrap:normal}
+.hero-description{font-size:clamp(10px,.76vw,12px);line-height:1.75}
+.hero-profile-card{
+  right:3.2%;
+  top:19%;
+  width:min(26%,500px);
+  max-width:500px;
+}
+.hero-capabilities{left:3.2%;right:3.2%;bottom:3.7%;gap:10px}
+.hero-capabilities article{min-height:64px;padding:10px 13px}
+.social-hotspots{left:2%;bottom:4.2%}
+.scroll-hotspot{bottom:1.3%}
+
+/* The first-visit check-in is a true centered dialog.
+   Its underlying hero copy is hidden until the form is completed. */
+body.check-in-open .hero-intro,
+body.check-in-open .hero-profile-card,
+body.check-in-open .hero-capabilities,
+body.check-in-open .social-hotspots,
+body.check-in-open .scroll-hotspot{
+  opacity:0 !important;
+  visibility:hidden !important;
+  pointer-events:none !important;
+  transform:translateY(10px);
+}
+.welcome-overlay{
+  display:grid;
+  place-items:center;
+  justify-items:center;
+  align-items:center;
+  padding:94px 20px 24px;
+}
+.welcome-backdrop{
+  background:rgba(5,6,27,.44);
+  backdrop-filter:blur(3px);
+}
+.welcome-modal{
+  width:min(470px,calc(100vw - 36px));
+  max-width:470px;
+  max-height:calc(100svh - 116px);
+  overflow:auto;
+  padding:34px clamp(22px,2.7vw,34px) 25px;
+  border-radius:22px;
+}
+.welcome-modal h1{font-size:clamp(29px,2.4vw,36px)}
+.welcome-modal .modal-description{max-width:390px;margin-inline:auto}
+.input-shell{min-width:0}
+.input-shell input,.input-shell select{min-width:0}
+.modal-submit{min-height:50px}
+body:not(.check-in-open) .hero-intro,
+body:not(.check-in-open) .hero-profile-card,
+body:not(.check-in-open) .hero-capabilities{
+  transition:opacity .45s ease,transform .45s ease;
+}
+
+/* Slightly narrower desktop / landscape tablet */
+@media(max-width:1280px) and (min-width:761px){
+  .topbar{padding-inline:22px}
+  .brand-hotspot{width:190px;gap:9px}
+  .brand-emblem{width:38px;height:38px}
+  .brand-copy strong{font-size:18px}
+  .main-nav{left:23%;width:64%;gap:3px}
+  .main-nav a{font-size:10px;padding-inline:4px}
+  .main-nav a:before{margin-right:4px}
+  .sound-toggle{right:18px;width:76px}
+  .hero-intro{left:34%;top:21%;width:31%}
+  .hero-profile-card{right:2.5%;top:52%;width:36%;padding:15px}
+  .hero-capabilities{left:3%;right:3%;bottom:2.8%;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+  .hero-capabilities article{min-height:58px;padding:8px}
+  .hero-capabilities strong{font-size:10px}
+  .hero-capabilities small{font-size:8px}
+}
+@media(max-width:1000px) and (min-width:761px){
+  .game-home{height:auto;min-height:1040px;max-height:none}
+  .hero-intro{left:37%;top:17%;width:57%}
+  .hero-profile-card{left:37%;right:auto;top:53%;width:57%;max-width:none}
+  .hero-capabilities{left:5%;right:5%;bottom:3%;grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+/* Mobile: vertical composition, no clipped cards or fixed-width controls */
+@media(max-width:760px){
+  .game-home{height:auto;min-height:1460px;max-height:none;overflow:hidden}
+  .reference-art{
+    background-size:auto 900px;
+    background-position:25% 0;
+    background-repeat:no-repeat;
+  }
+  .topbar{height:116px;min-height:116px;padding:0 14px}
+  .brand-hotspot{left:14px;top:12px;width:auto}
+  .main-nav{left:10px;right:10px;top:63px;width:auto;height:42px;gap:5px}
+  .main-nav a{flex:0 0 auto;height:36px;padding:0 10px;font-size:10px}
+  .sound-toggle{right:14px;top:13px;width:75px;height:35px}
+  .hero-intro{
+    left:5%;right:5%;top:480px;width:auto;max-width:none;
+    padding:21px;border-radius:17px;
+    background:linear-gradient(145deg,rgba(10,11,43,.86),rgba(18,15,57,.78));
+  }
+  .hero-intro h1{font-size:clamp(38px,10vw,50px)}
+  .hero-description{font-size:11px;line-height:1.8}
+  .hero-profile-card{
+    left:5%;right:5%;top:815px;width:auto;max-width:none;
+    padding:17px;
+  }
+  .profile-avatar{width:82px}
+  .profile-card-copy h2{font-size:22px}
+  .hero-capabilities{
+    left:5%;right:5%;bottom:54px;
+    grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;
+  }
+  .hero-capabilities article{min-height:56px;padding:9px}
+  .hero-capabilities article>span{font-size:19px}
+  .hero-capabilities strong{font-size:10px}
+  .hero-capabilities small{font-size:8px}
+  .social-hotspots{left:14px;bottom:12px;gap:6px}
+  .scroll-hotspot{left:auto;right:10px;bottom:10px;transform:none;font-size:8px}
+  .welcome-overlay{padding:128px 13px 18px}
+  .welcome-backdrop{
+    background:linear-gradient(180deg,rgba(5,6,28,.25),rgba(5,6,28,.66));
+    backdrop-filter:blur(3px);
+  }
+  .welcome-modal{
+    width:min(460px,calc(100vw - 26px));
+    max-height:calc(100svh - 146px);
+    padding:31px 21px 23px;
+    border-radius:19px;
+  }
+  .welcome-modal h1{font-size:29px}
+  .modal-description{font-size:10px;margin-bottom:15px}
+  .welcome-modal form>label,.form-grid label{font-size:10px}
+  .input-shell{height:44px}
+  .input-shell input,.input-shell select{font-size:10px}
+  .portfolio-shell:before{background-attachment:scroll;opacity:.22}
+}
+@media(max-width:420px){
+  .game-home{min-height:1500px}
+  .hero-intro{top:470px}
+  .hero-profile-card{top:820px}
+  .hero-intro h1{font-size:42px}
+  .hero-actions{gap:8px}
+  .hero-primary-action,.hero-secondary-action{min-height:40px;padding:0 12px;font-size:10px}
+  .hero-capabilities{bottom:54px;gap:7px}
+  .hero-capabilities article{gap:8px;padding:8px}
+  .hero-capabilities small{font-size:7px}
+  .form-grid{gap:8px}
+}
+@media(max-height:760px) and (min-width:761px){
+  .game-home{min-height:760px}
+  .hero-intro{top:22%}
+  .hero-profile-card{top:16%;padding:14px}
+  .hero-profile-card blockquote{margin-top:11px;padding:9px 12px}
+  .hero-capabilities{bottom:2.4%}
+  .welcome-overlay{padding-top:86px;padding-bottom:16px}
+  .welcome-modal{max-height:calc(100svh - 102px);padding-top:26px;padding-bottom:19px}
+}
+@media(prefers-reduced-motion:reduce){
+  body:not(.check-in-open) .hero-intro,
+  body:not(.check-in-open) .hero-profile-card,
+  body:not(.check-in-open) .hero-capabilities{transition:none}
+}

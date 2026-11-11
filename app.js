@@ -5,22 +5,15 @@ const toast = document.getElementById('toast');
 const fields = {
   company: document.getElementById('company'),
   name: document.getElementById('visitorName'),
-  year: document.getElementById('birthYear'),
   gender: document.getElementById('gender')
 };
 const motionToggle = document.getElementById('motionToggle');
-const currentYear = new Date().getFullYear();
-fields.year.max = String(currentYear);
 document.body.classList.add('check-in-open');
 
-function honorificFor(year, gender) {
-  if (year === 2005) return 'bạn';
-  if (year > 2005) {
-    if (gender === 'male') return 'anh';
-    if (gender === 'female') return 'chị';
-    return 'bạn';
-  }
-  return 'em';
+function honorificFor(gender) {
+  if (gender === 'male') return 'anh';
+  if (gender === 'female') return 'chị';
+  return 'bạn';
 }
 
 function showToast(message) {
@@ -33,33 +26,25 @@ function showToast(message) {
 function readVisitor() {
   const company = fields.company.value.trim();
   const name = fields.name.value.trim();
-  const yearText = fields.year.value.trim();
   const gender = fields.gender.value;
-  const year = Number(yearText);
 
-  if (!company || !name || !yearText || !gender) {
+  if (!company || !name || !gender) {
     errorBox.textContent = 'Bạn hãy điền đầy đủ thông tin để bắt đầu nhé.';
     const firstMissing = [
       [fields.company, company],
       [fields.name, name],
-      [fields.year, yearText],
       [fields.gender, gender]
     ].find(([, value]) => !value);
     firstMissing?.[0].focus();
     return null;
   }
-  if (!Number.isInteger(year) || year < Number(fields.year.min) || year > currentYear) {
-    errorBox.textContent = `Năm sinh cần nằm trong khoảng 1900–${currentYear}.`;
-    fields.year.focus();
-    return null;
-  }
 
   errorBox.textContent = '';
-  return { company, name, year, gender };
+  return { company, name, gender };
 }
 
 function personalize(visitor) {
-  const title = honorificFor(visitor.year, visitor.gender);
+  const title = honorificFor(visitor.gender);
   const greeting = `Xin chào ${title} ${visitor.name} từ ${visitor.company}.`;
   document.getElementById('visitorGreeting').textContent = greeting;
   document.getElementById('visitorBannerMessage').textContent = `${greeting} Cùng bắt đầu hành trình khám phá Portfolio nhé!`;

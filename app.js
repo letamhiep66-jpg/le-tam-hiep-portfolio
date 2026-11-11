@@ -5,7 +5,8 @@ const toast = document.getElementById('toast');
 const fields = {
   company: document.getElementById('company'),
   name: document.getElementById('visitorName'),
-  gender: document.getElementById('gender')
+  gender: document.getElementById('gender'),
+  birthYear: document.getElementById('birthYear')
 };
 const motionToggle = document.getElementById('motionToggle');
 const genderTrigger = document.getElementById('genderTrigger');
@@ -86,7 +87,9 @@ document.addEventListener('click', (event) => {
   if (!genderField.contains(event.target) && !genderMenu.hidden) closeGenderMenu();
 });
 
-function honorificFor(gender) {
+function honorificFor(gender, birthYear) {
+  if (birthYear < 2005) return 'em';
+  if (birthYear === 2005) return 'bạn';
   if (gender === 'male') return 'anh';
   if (gender === 'female') return 'chị';
   return 'bạn';
@@ -103,12 +106,14 @@ function readVisitor() {
   const company = fields.company.value.trim();
   const name = fields.name.value.trim();
   const gender = fields.gender.value;
+  const birthYear = Number(fields.birthYear.value);
 
-  if (!company || !name || !gender) {
+  if (!company || !name || !gender || !fields.birthYear.value || !Number.isInteger(birthYear) || birthYear < 1900 || birthYear > new Date().getFullYear()) {
     errorBox.textContent = 'Bạn hãy điền đầy đủ thông tin để bắt đầu nhé.';
     const firstMissing = [
       [fields.company, company],
       [fields.name, name],
+      [fields.birthYear, fields.birthYear.value && birthYear >= 1900 && birthYear <= new Date().getFullYear()],
       [genderTrigger, gender]
     ].find(([, value]) => !value);
     firstMissing?.[0].focus();
@@ -116,11 +121,11 @@ function readVisitor() {
   }
 
   errorBox.textContent = '';
-  return { company, name, gender };
+  return { company, name, gender, birthYear };
 }
 
 function personalize(visitor) {
-  const title = honorificFor(visitor.gender);
+  const title = honorificFor(visitor.gender, visitor.birthYear);
   const greeting = `Xin chào ${title} ${visitor.name} từ ${visitor.company}.`;
   document.getElementById('visitorGreeting').textContent = greeting;
   document.getElementById('visitorBannerMessage').textContent = `${greeting} Cùng bắt đầu hành trình khám phá Portfolio nhé!`;

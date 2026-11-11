@@ -98,7 +98,7 @@
             <div class="input-shell"><span>▦</span><input id="company" name="visitorOrganization" type="text" placeholder="Ví dụ: PixOn, VNG, Google..." autocomplete="new-password" autocapitalize="words" spellcheck="false" required></div>
             <label for="visitorName">Họ và tên của bạn</label>
             <div class="input-shell"><span>♙</span><input id="visitorName" name="visitorFullName" type="text" placeholder="Nhập tên người tham dự" autocomplete="new-password" autocapitalize="words" spellcheck="false" required></div>
-            <label id="genderLabel" for="genderTrigger">Giới tính</label>
+            <div class="visitor-fields-row"><div class="birth-year-field"><label for="birthYear">Năm sinh</label><div class="input-shell"><span aria-hidden="true">▦</span><input id="birthYear" name="birthYear" type="number" inputmode="numeric" min="1900" max="2026" placeholder="Ví dụ: 2000" required></div></div><div class="gender-field-wrap"><label id="genderLabel" for="genderTrigger">Giới tính</label>
             <div class="input-shell gender-field custom-select">
               <span aria-hidden="true">✧</span>
               <button id="genderTrigger" class="gender-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="genderOptions">
@@ -110,7 +110,7 @@
                 <button type="button" role="option" aria-selected="false" data-value="female">Nữ</button>
                 <button type="button" role="option" aria-selected="false" data-value="other">Khác / Không chia sẻ</button>
               </div>
-            </div>
+            </div></div>
             <p class="form-error" id="formError" role="alert" aria-live="polite"></p>
             <button class="modal-submit" type="submit"><span>➤</span> Bắt đầu khám phá <b>✦</b></button>
           </form>

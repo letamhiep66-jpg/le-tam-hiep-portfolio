@@ -2186,3 +2186,184 @@ body:not(.check-in-open) .game-home .scroll-hotspot{
   .game-home .modal-submit{height:45px;min-height:45px;margin-top:6px}
   .game-home .privacy-note{margin-top:6px}
 }
+
+
+/* ==========================================================
+   HOMEPAGE FINAL CORRECTION
+   Force-replace the old embedded anime webpage mockup. The
+   portrait is the actual background photo; the interface is
+   rendered once above it as independent HTML elements.
+   ========================================================== */
+#home{
+  position:relative !important;
+  isolation:isolate !important;
+  overflow:hidden !important;
+  background:#bcb0d6 !important;
+}
+#home > .reference-art{
+  position:absolute !important;
+  inset:0 !important;
+  z-index:0 !important;
+  transform:none !important;
+  filter:none !important;
+  background-color:#bdb2d6 !important;
+  background-image:
+    linear-gradient(90deg,
+      rgba(199,188,224,0) 0%,
+      rgba(199,188,224,0) 38%,
+      rgba(191,179,218,.10) 44%,
+      rgba(161,145,198,.28) 52%,
+      rgba(107,91,151,.55) 68%,
+      rgba(65,62,104,.72) 100%),
+    url('assets/avatar-le-tam-hiep.webp'),
+    linear-gradient(120deg,#e0d8eb 0%,#c8bddf 48%,#8176a9 100%) !important;
+  background-size:
+    100% 100%,
+    54% 100%,
+    100% 100% !important;
+  background-position:
+    center center,
+    left center,
+    center center !important;
+  background-repeat:no-repeat !important;
+  background-attachment:scroll !important;
+}
+#home > .art-vignette{
+  z-index:1 !important;
+  pointer-events:none !important;
+  background:
+    linear-gradient(180deg,rgba(10,8,31,.08),transparent 18%,transparent 82%,rgba(21,14,49,.20)),
+    linear-gradient(90deg,transparent 0%,transparent 41%,rgba(53,37,89,.05) 52%,rgba(30,24,61,.18) 100%) !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+#home > .ambient-stars{
+  z-index:2 !important;
+  opacity:.36;
+}
+#home .welcome-overlay{
+  z-index:20 !important;
+  justify-content:flex-end !important;
+  align-items:center !important;
+  padding:20px clamp(32px,7vw,118px) 20px 0 !important;
+}
+#home .welcome-backdrop{
+  background:linear-gradient(90deg,transparent 0%,transparent 46%,rgba(27,20,55,.07) 66%,rgba(24,19,53,.18) 100%) !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+#home .welcome-modal{
+  width:min(630px,40vw) !important;
+  min-width:455px !important;
+  max-width:630px !important;
+  max-height:calc(100% - 30px) !important;
+  padding:50px clamp(28px,2.3vw,40px) 25px !important;
+  background:linear-gradient(145deg,rgba(23,19,66,.91),rgba(10,12,43,.95) 65%,rgba(31,22,75,.92)) !important;
+  border:1px solid rgba(222,197,255,.84) !important;
+  border-radius:24px !important;
+  box-shadow:0 0 0 1px rgba(255,255,255,.09),0 0 44px rgba(142,104,233,.42),inset 0 0 34px rgba(190,155,255,.09) !important;
+  backdrop-filter:blur(15px) saturate(1.12) !important;
+  -webkit-backdrop-filter:blur(15px) saturate(1.12) !important;
+}
+#home .welcome-modal h1{
+  font-size:clamp(31px,2.35vw,39px) !important;
+  line-height:1.08;
+}
+#home .modal-description{
+  max-width:470px;
+  margin:10px auto 19px;
+  font-size:12px;
+  line-height:1.65;
+}
+#home .welcome-modal form>label{
+  margin:9px 0 5px;
+  font-size:11px;
+}
+#home .welcome-modal form>.input-shell{
+  height:51px !important;
+  min-height:51px !important;
+  margin-bottom:6px;
+  border-radius:12px;
+}
+#home .input-shell input,
+#home .gender-trigger{
+  font-size:12px;
+}
+#home .modal-submit{
+  height:55px !important;
+  min-height:55px !important;
+  margin-top:12px;
+  font-size:13px;
+}
+#home .privacy-note{margin-top:11px;font-size:9px}
+
+/* Keep the portrait as the profile photo after the check-in closes. */
+#home .profile-avatar{
+  background-image:url('assets/avatar-le-tam-hiep.webp') !important;
+  background-size:cover !important;
+  background-position:center 25% !important;
+  background-repeat:no-repeat !important;
+}
+
+/* The first screen is deliberately uncluttered before visitor check-in. */
+body.check-in-open #home .hero-intro,
+body.check-in-open #home .hero-profile-card,
+body.check-in-open #home .hero-capabilities,
+body.check-in-open #home .social-hotspots,
+body.check-in-open #home .scroll-hotspot{
+  opacity:0 !important;
+  visibility:hidden !important;
+  pointer-events:none !important;
+}
+body.check-in-open #home .topbar{
+  opacity:1 !important;
+}
+
+/* Landscape tablets */
+@media(min-width:761px) and (max-width:1100px){
+  #home > .reference-art{
+    background-size:100% 100%,56% 100%,100% 100% !important;
+  }
+  #home .welcome-overlay{padding-right:20px !important}
+  #home .welcome-modal{
+    width:min(490px,46vw) !important;
+    min-width:360px !important;
+    padding:45px 24px 20px !important;
+  }
+  #home .welcome-modal h1{font-size:30px !important}
+  #home .modal-description{font-size:10px;margin:8px auto 13px}
+  #home .welcome-modal form>label{margin:6px 0 4px}
+  #home .welcome-modal form>.input-shell{height:44px !important;min-height:44px !important}
+  #home .modal-submit{height:48px !important;min-height:48px !important;margin-top:8px}
+}
+
+/* Mobile: portrait stays visible behind a centered, scroll-safe form. */
+@media(max-width:760px){
+  #home > .reference-art{
+    background-image:
+      linear-gradient(180deg,rgba(20,13,47,.04) 0%,rgba(16,12,43,.20) 37%,rgba(12,11,38,.78) 100%),
+      url('assets/avatar-le-tam-hiep.webp'),
+      linear-gradient(120deg,#d8cde7,#74699b) !important;
+    background-size:100% 100%,auto 62%,100% 100% !important;
+    background-position:center center,left top,center center !important;
+  }
+  #home .welcome-overlay{
+    position:absolute !important;
+    inset:0 !important;
+    display:grid !important;
+    place-items:center !important;
+    padding:12px !important;
+  }
+  #home .welcome-modal{
+    width:min(470px,calc(100vw - 28px)) !important;
+    min-width:0 !important;
+    max-width:470px !important;
+    max-height:calc(100% - 24px) !important;
+    padding:47px 21px 18px !important;
+  }
+  #home .welcome-modal h1{font-size:28px !important}
+  #home .modal-description{font-size:10px;margin:8px auto 14px}
+  #home .welcome-modal form>label{margin:6px 0 4px}
+  #home .welcome-modal form>.input-shell{height:43px !important;min-height:43px !important}
+  #home .modal-submit{height:48px !important;min-height:48px !important;margin-top:8px}
+}

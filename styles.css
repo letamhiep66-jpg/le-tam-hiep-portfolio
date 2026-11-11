@@ -1879,3 +1879,12 @@ body[data-active-tab="home"] .topbar .main-nav a[aria-selected="true"]{box-shado
   .portfolio-content > .content-section.is-active,
   .portfolio-content > .contact-section.is-active{animation:none}
 }
+
+/* Keep the contact page's intended centered layout when it is the active tab. */
+.portfolio-content > .contact-section.is-active{display:flex !important}
+body.check-in-open .topbar .main-nav,
+body.check-in-open .topbar .brand-hotspot,
+body.check-in-open .topbar .sound-toggle{
+  pointer-events:none;
+}
+body.check-in-open .topbar{opacity:.78}

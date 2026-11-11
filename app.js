@@ -213,7 +213,9 @@ function activateTab(id, { updateHistory = true } = {}) {
   document.body.dataset.activeTab = id;
   const isHome = id === 'home';
   homePanel.hidden = !isHome;
+  homePanel.setAttribute('aria-hidden', String(!isHome));
   portfolioShell.hidden = isHome;
+  portfolioShell.setAttribute('aria-hidden', String(isHome));
 
   allTabPanels.forEach((panel) => {
     const active = panel.id === id;

@@ -2847,3 +2847,6 @@ body.check-in-open .hero-capabilities{opacity:0;visibility:hidden;pointer-events
   .side-ornament{display:none}
   .availability-badge{right:14px;bottom:18px;font-size:9px;padding:8px 11px}
 }
+
+/* Align the check-in panel slightly lower, like the reference composition. */
+.welcome-modal{top:55%;}

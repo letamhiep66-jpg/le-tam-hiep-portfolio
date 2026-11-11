@@ -88,7 +88,9 @@ document.addEventListener('click', (event) => {
 });
 
 function honorificFor(gender, birthYear) {
-  if (birthYear < 2005) return 'em';
+  // Hiệp sinh năm 2005: người lớn tuổi hơn là anh/chị,
+  // cùng năm sinh xưng bạn, người sinh sau năm 2005 xưng em.
+  if (birthYear > 2005) return 'em';
   if (birthYear === 2005) return 'bạn';
   if (gender === 'male') return 'anh';
   if (gender === 'female') return 'chị';
@@ -105,18 +107,26 @@ function showToast(message) {
 function readVisitor() {
   const company = fields.company.value.trim();
   const name = fields.name.value.trim();
+  const yearText = fields.birthYear.value.trim();
+  const birthYear = Number(yearText);
   const gender = fields.gender.value;
-  const birthYear = Number(fields.birthYear.value);
+  const currentYear = new Date().getFullYear();
 
-  if (!company || !name || !gender || !fields.birthYear.value || !Number.isInteger(birthYear) || birthYear < 1900 || birthYear > new Date().getFullYear()) {
+  if (!company || !name || !yearText || !gender) {
     errorBox.textContent = 'Bạn hãy điền đầy đủ thông tin để bắt đầu nhé.';
     const firstMissing = [
       [fields.company, company],
       [fields.name, name],
-      [fields.birthYear, fields.birthYear.value && birthYear >= 1900 && birthYear <= new Date().getFullYear()],
+      [fields.birthYear, yearText],
       [genderTrigger, gender]
     ].find(([, value]) => !value);
     firstMissing?.[0].focus();
+    return null;
+  }
+
+  if (!Number.isInteger(birthYear) || birthYear < 1900 || birthYear > currentYear) {
+    errorBox.textContent = `Năm sinh cần nằm trong khoảng 1900–${currentYear}.`;
+    fields.birthYear.focus();
     return null;
   }
 

@@ -616,3 +616,611 @@ body:not(.check-in-open) .hero-capabilities{
   .hero-intro{left:34%;width:29%;top:22%}
   .hero-profile-card{right:3%;width:30%;top:50%}
 }
+
+
+/* ==========================================================
+   FINAL UI POLISH — content-first layout, clean image layer,
+   responsive navigation and tactile button states.
+   ========================================================== */
+:root{
+  --night:#07091f;
+  --navy:#101233;
+  --violet:#9a72ff;
+  --lavender:#e3d5ff;
+  --gold:#f5d69a;
+  --white:#fffaff;
+  --muted:#d3cce8;
+  --line:rgba(211,185,255,.34);
+  --glass:rgba(12,13,43,.68);
+  --glass-strong:rgba(12,13,42,.88);
+}
+html{scroll-padding-top:92px}
+body{background:#07091f;overflow-x:hidden}
+button,a{-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{
+  outline:2px solid #f8dca6;outline-offset:3px;
+}
+
+/* Main scene: this points to an image-only background, not a UI mockup. */
+.game-home{
+  position:relative;
+  width:100%;
+  height:100svh;
+  min-height:760px;
+  max-height:none;
+  overflow:hidden;
+  background:#090b28;
+  isolation:isolate;
+}
+.reference-art{
+  z-index:-3;
+  background-image:url('assets/astral-portfolio-background.webp') !important;
+  background-position:center 48%;
+  background-size:cover;
+  background-repeat:no-repeat;
+  transform:none;
+  image-rendering:auto;
+}
+.art-vignette{
+  z-index:-2;
+  background:
+    linear-gradient(90deg,rgba(5,6,28,.02) 0%,rgba(5,6,28,.03) 34%,rgba(5,6,28,.17) 69%,rgba(5,6,28,.24) 100%),
+    linear-gradient(180deg,rgba(5,6,28,.43) 0%,transparent 16%,transparent 77%,rgba(5,6,28,.42) 100%);
+}
+
+/* Header uses flex layout instead of absolute percentage hitboxes. */
+.topbar{
+  position:absolute;
+  z-index:10;
+  inset:0 0 auto;
+  height:82px;
+  min-height:82px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:clamp(14px,2vw,32px);
+  padding:0 clamp(18px,3.1vw,54px);
+  border-bottom:1px solid rgba(218,196,255,.19);
+  background:linear-gradient(180deg,rgba(8,9,34,.86),rgba(8,9,34,.32));
+  backdrop-filter:blur(13px);
+}
+.brand-hotspot{
+  position:relative;
+  inset:auto;
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  width:auto;
+  height:auto;
+  color:#fff;
+  text-decoration:none;
+  border-radius:10px;
+}
+.brand-emblem{
+  width:42px;height:42px;
+  flex:none;
+  display:grid;place-items:center;
+  border:1px solid rgba(245,218,171,.82);
+  border-radius:50%;
+  color:#ffe9bd;font-size:27px;
+  text-shadow:0 0 17px #c5a2ff;
+  box-shadow:0 0 22px rgba(204,164,255,.24),inset 0 0 15px rgba(237,197,255,.14);
+}
+.brand-copy{display:grid;gap:2px}
+.brand-copy strong{font:600 20px 'Cormorant Garamond',serif;letter-spacing:.02em}
+.brand-copy small{color:#c8b8ed;font-size:8px;letter-spacing:.22em}
+.main-nav{
+  position:static;
+  inset:auto;
+  flex:1 1 auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:clamp(3px,.65vw,12px);
+  width:auto;height:auto;
+  min-width:0;
+  margin:0;
+}
+.main-nav a{
+  position:relative;
+  inset:auto;
+  flex:0 1 auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:auto;height:46px;
+  min-width:0;
+  padding:0 clamp(8px,.85vw,14px);
+  border:1px solid transparent;
+  border-radius:999px;
+  color:#e5def7;
+  text-decoration:none;
+  white-space:nowrap;
+  font-size:clamp(10px,.78vw,13px);
+  transition:color .22s ease,background .22s ease,border-color .22s ease,box-shadow .22s ease,transform .18s ease;
+}
+.main-nav a:before{content:"✧";margin-right:7px;color:#d4baff;font-size:12px}
+.main-nav .nav-home:before{content:"⌂"}
+.main-nav .nav-journey:before{content:"◈"}
+.main-nav .nav-skills:before{content:"✦"}
+.main-nav .nav-projects:before{content:"◇"}
+.main-nav .nav-certificates:before{content:"✧"}
+.main-nav .nav-contact:before{content:"✉"}
+.main-nav a:hover,
+.main-nav a:focus-visible,
+.main-nav a[aria-current="page"]{
+  color:#fff;
+  border-color:rgba(207,175,255,.58);
+  background:linear-gradient(120deg,rgba(147,103,255,.35),rgba(91,91,186,.22));
+  box-shadow:0 0 22px rgba(158,117,255,.28),inset 0 -2px rgba(231,207,255,.78);
+}
+.main-nav a:active{transform:translateY(1px) scale(.97)}
+.sound-toggle{
+  position:static;
+  flex:0 0 auto;
+  width:auto;height:42px;
+  min-width:92px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:0 13px;
+  border:1px solid rgba(219,194,255,.32);
+  border-radius:999px;
+  background:rgba(16,14,48,.58);
+  color:#fff;
+  cursor:pointer;
+  transition:background .2s ease,border-color .2s ease,box-shadow .2s ease,transform .18s ease;
+}
+.sound-toggle:hover{background:rgba(116,87,190,.35);border-color:rgba(230,205,255,.7);box-shadow:0 0 24px rgba(161,119,255,.32)}
+.sound-toggle:active{transform:scale(.95)}
+.sound-symbol{font-size:15px;color:#efd8ff}
+.sound-state{font-size:10px;letter-spacing:.12em}
+.toggle-dot{width:15px;height:15px;flex:none;border-radius:50%;background:linear-gradient(140deg,#fff8d8,#f2c981);box-shadow:0 0 12px rgba(255,216,147,.78)}
+
+/* Hero copy and cards occupy dedicated columns. */
+.hero-intro{
+  z-index:4;
+  left:36.5%;
+  top:24%;
+  width:min(31%,560px);
+  max-width:560px;
+  min-width:0;
+  padding:clamp(17px,1.55vw,25px);
+  border:1px solid rgba(209,183,255,.27);
+  border-radius:19px;
+  background:linear-gradient(135deg,rgba(10,11,43,.78),rgba(20,18,62,.52));
+  box-shadow:0 18px 50px rgba(3,4,25,.22),inset 0 0 28px rgba(194,157,255,.06);
+  backdrop-filter:blur(14px);
+}
+.hero-eyebrow{font-size:clamp(8px,.66vw,10px);letter-spacing:.17em}
+.hero-greeting{margin-top:12px;font-size:clamp(17px,1.55vw,24px)}
+.hero-intro h1{
+  margin:0;
+  font-size:clamp(38px,3.55vw,62px);
+  line-height:.98;
+  overflow-wrap:normal;
+}
+.hero-role{margin-top:10px;font-size:clamp(10px,.9vw,13px);line-height:1.5}
+.hero-description{margin-top:12px;font-size:clamp(10px,.77vw,12px);line-height:1.8}
+.hero-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}
+.hero-primary-action,.hero-secondary-action{
+  min-height:44px;
+  padding:0 17px;
+  border-radius:999px;
+  font:600 11px 'Be Vietnam Pro',sans-serif;
+  transition:transform .2s ease,filter .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease;
+  cursor:pointer;
+  user-select:none;
+}
+.hero-primary-action{
+  border:1px solid rgba(255,226,180,.88);
+  color:#fff;
+  background:linear-gradient(100deg,#a66df4,#626edc);
+  box-shadow:0 0 22px rgba(172,121,255,.32),inset 0 1px rgba(255,255,255,.42);
+}
+.hero-secondary-action{
+  border:1px solid rgba(212,188,255,.42);
+  color:#f4eaff;
+  background:rgba(15,14,47,.66);
+}
+.hero-primary-action:hover,.hero-secondary-action:hover{
+  transform:translateY(-3px);
+  filter:brightness(1.14);
+  box-shadow:0 0 30px rgba(174,128,255,.5),0 0 56px rgba(115,111,255,.2);
+  border-color:rgba(255,230,193,.88);
+}
+.hero-primary-action:active,.hero-secondary-action:active{
+  transform:translateY(1px) scale(.97);
+  filter:brightness(1.2);
+  box-shadow:0 0 14px rgba(183,135,255,.55);
+}
+.hero-motto{margin-top:14px;font-size:13px;line-height:1.4}
+
+/* Profile card now uses the actual portrait supplied by the owner. */
+.hero-profile-card{
+  z-index:4;
+  top:20%;
+  right:2.8%;
+  left:auto;
+  width:min(27%,500px);
+  max-width:500px;
+  min-width:0;
+  padding:19px 20px 17px;
+  border:1px solid rgba(216,190,255,.53);
+  border-radius:19px;
+  background:linear-gradient(145deg,rgba(18,15,58,.86),rgba(10,14,43,.76));
+  box-shadow:0 0 35px rgba(171,130,255,.24),inset 0 0 30px rgba(192,157,255,.08);
+  backdrop-filter:blur(16px);
+}
+.profile-card-main{display:flex;align-items:center;gap:15px;margin-top:16px}
+.profile-avatar{
+  position:relative;
+  flex:0 0 clamp(78px,7.2vw,108px);
+  width:clamp(78px,7.2vw,108px);
+  aspect-ratio:1;
+  overflow:hidden;
+  border:2px solid rgba(221,190,255,.9);
+  border-radius:50%;
+  background:rgba(14,12,48,.8);
+  box-shadow:0 0 0 5px rgba(150,103,255,.15),0 0 24px rgba(175,139,255,.42);
+}
+.profile-avatar img{
+  display:block;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center 34%;
+}
+.profile-card-copy{min-width:0}
+.profile-card-copy h2{font-size:clamp(19px,1.65vw,27px);white-space:normal;line-height:1.15}
+.profile-card-copy>p{font-size:10px}
+.profile-card-copy ul{gap:7px}
+.profile-card-copy li{font-size:clamp(9px,.72vw,10px)}
+.hero-profile-card blockquote{
+  margin:15px 0 0;
+  padding:12px 14px;
+  font-size:14px;
+  line-height:1.55;
+}
+
+/* Four strengths line up within their own region, not over the profile. */
+.hero-capabilities{
+  z-index:4;
+  left:36.5%;
+  right:2.8%;
+  bottom:4%;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:9px;
+}
+.hero-capabilities article{
+  min-width:0;
+  min-height:66px;
+  gap:10px;
+  padding:10px 12px;
+  border:1px solid rgba(213,188,255,.36);
+  border-radius:13px;
+  background:linear-gradient(120deg,rgba(15,13,48,.82),rgba(24,20,65,.63));
+  box-shadow:inset 0 0 18px rgba(198,165,255,.07),0 8px 25px rgba(3,4,22,.18);
+  backdrop-filter:blur(12px);
+  transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease,background .22s ease;
+}
+.hero-capabilities article:hover{
+  transform:translateY(-4px);
+  border-color:rgba(245,217,174,.75);
+  background:linear-gradient(120deg,rgba(42,28,88,.88),rgba(34,33,91,.75));
+  box-shadow:0 0 24px rgba(161,116,255,.32);
+}
+.hero-capabilities strong{font-size:10px}
+.hero-capabilities small{font-size:8px;line-height:1.4}
+
+/* Social and scroll controls are separate, visible hit areas. */
+.social-hotspots{left:2%;bottom:4.2%;width:auto;height:auto;gap:8px}
+.social-hotspots a{
+  display:grid;place-items:center;
+  width:37px;height:37px;
+  border:1px solid rgba(219,192,255,.52);
+  border-radius:50%;
+  background:rgba(12,12,42,.68);
+  color:#f3e7ff;text-decoration:none;
+  font-size:10px;font-weight:700;
+  backdrop-filter:blur(8px);
+  transition:transform .2s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+.social-hotspots a:hover{transform:translateY(-3px);border-color:#f5d69a;background:rgba(142,105,218,.5);box-shadow:0 0 22px rgba(170,125,255,.42)}
+.social-hotspots a:active{transform:scale(.91)}
+.scroll-hotspot{
+  left:50%;bottom:1.1%;
+  width:auto;height:auto;
+  transform:translateX(-50%);
+  padding:6px 12px;
+  border:1px solid rgba(215,189,255,.3);
+  border-radius:999px;
+  background:rgba(12,12,42,.6);
+  color:#efe8ff;
+  font-size:9px;
+  backdrop-filter:blur(9px);
+  transition:transform .2s ease,background .2s ease,box-shadow .2s ease;
+}
+.scroll-hotspot:hover{transform:translate(-50%,-2px);background:rgba(102,78,166,.62);box-shadow:0 0 18px rgba(165,126,255,.26)}
+.scroll-hotspot:active{transform:translate(-50%,1px) scale(.97)}
+
+/* Guest check-in remains a real form over the image-only background. */
+.welcome-overlay{
+  z-index:20;
+  display:grid;
+  place-items:center;
+  justify-items:center;
+  align-items:center;
+  padding:96px 18px 20px;
+}
+.welcome-backdrop{
+  background:rgba(5,6,27,.46);
+  backdrop-filter:blur(1.5px);
+}
+.welcome-modal{
+  width:min(470px,calc(100vw - 36px));
+  max-width:470px;
+  max-height:calc(100svh - 116px);
+  overflow:auto;
+  overscroll-behavior:contain;
+  padding:34px clamp(22px,2.7vw,34px) 25px;
+  border-radius:22px;
+  background:linear-gradient(150deg,rgba(18,16,60,.96),rgba(10,12,42,.96) 65%,rgba(22,16,57,.97));
+  box-shadow:0 0 0 1px rgba(233,204,255,.12),0 0 48px rgba(151,105,255,.4),inset 0 0 45px rgba(149,108,255,.1);
+  backdrop-filter:blur(18px);
+}
+.welcome-modal h1{font-size:clamp(29px,2.4vw,36px)}
+.modal-description{font-size:11px;line-height:1.7}
+.welcome-modal form>label,.form-grid label{font-size:10px}
+.input-shell{
+  min-width:0;
+  height:46px;
+  border-radius:11px;
+  background:rgba(7,9,34,.86);
+  transition:border-color .2s ease,box-shadow .2s ease,background .2s ease;
+}
+.input-shell:focus-within{
+  border-color:#d7baff;
+  background:rgba(11,11,43,.98);
+  box-shadow:0 0 0 3px rgba(154,114,255,.17),0 0 24px rgba(158,121,255,.25);
+}
+.input-shell input,.input-shell select{min-width:0;font-size:11px}
+.modal-submit{
+  position:relative;
+  min-height:50px;
+  overflow:hidden;
+  border:1px solid rgba(255,229,181,.95);
+  background:linear-gradient(100deg,#a76df0,#676de2 60%,#9182f7);
+  box-shadow:0 0 22px rgba(179,129,255,.48),inset 0 1px rgba(255,255,255,.42);
+  transition:transform .2s ease,filter .2s ease,box-shadow .2s ease;
+}
+.modal-submit:hover{transform:translateY(-3px);filter:brightness(1.15);box-shadow:0 0 32px rgba(189,143,255,.72),0 0 60px rgba(105,119,255,.3)}
+.modal-submit:active{transform:translateY(1px) scale(.975);filter:brightness(1.2);box-shadow:0 0 14px rgba(183,135,255,.6)}
+.modal-submit:before{
+  content:"";position:absolute;top:-30%;left:-45%;width:28%;height:160%;
+  transform:skewX(-24deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
+  transition:left .55s ease;pointer-events:none;
+}
+.modal-submit:hover:before{left:125%}
+
+/* Common button feedback: hover glow, press-in state, and keyboard focus. */
+button,.filter-button,.primary-action,.secondary-action,.hero-primary-action,.hero-secondary-action{
+  -webkit-tap-highlight-color:transparent;
+}
+.filter-button,.primary-action,.secondary-action{
+  transition:transform .2s ease,filter .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease;
+}
+.filter-button:hover,.primary-action:hover,.secondary-action:hover{
+  transform:translateY(-2px);
+  border-color:rgba(245,217,174,.78);
+  box-shadow:0 0 22px rgba(161,116,255,.34);
+  filter:brightness(1.1);
+}
+.filter-button:active,.primary-action:active,.secondary-action:active{
+  transform:translateY(1px) scale(.97);
+  filter:brightness(1.18);
+}
+.filter-button.is-active{
+  border-color:rgba(240,211,255,.76);
+  background:linear-gradient(110deg,rgba(142,98,225,.52),rgba(90,100,206,.4));
+  color:#fff;
+  box-shadow:0 0 19px rgba(151,108,255,.2),inset 0 0 12px rgba(224,197,255,.1);
+}
+.project-copy summary{
+  transition:color .2s ease,text-shadow .2s ease;
+}
+.project-copy summary:hover{color:#fff;text-shadow:0 0 12px rgba(205,170,255,.65)}
+.project-card details[open] summary{color:#f4d69f}
+
+/* Portfolio tabs: a single responsive navigation row without collisions. */
+.portfolio-tabs{
+  position:sticky;top:0;z-index:15;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:nowrap;
+  gap:8px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding:10px clamp(12px,3vw,42px);
+  background:rgba(8,9,34,.91);
+  border-bottom:1px solid rgba(210,186,255,.2);
+  backdrop-filter:blur(18px);
+  scrollbar-width:thin;
+  scrollbar-color:#7762ac transparent;
+}
+.portfolio-tabs a{
+  flex:0 0 auto;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 15px;
+  border:1px solid transparent;
+  border-radius:999px;
+  color:#d4cce8;
+  text-decoration:none;
+  white-space:nowrap;
+  font-size:11px;
+  transition:background .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease,transform .18s ease;
+}
+.portfolio-tabs a span{color:#b9a2ec;font-size:9px;letter-spacing:.1em}
+.portfolio-tabs a:hover,
+.portfolio-tabs a[aria-current="location"]{
+  color:#fff;
+  background:rgba(126,91,197,.25);
+  border-color:rgba(209,181,255,.48);
+  box-shadow:0 0 19px rgba(143,102,255,.19),inset 0 -1px rgba(231,207,255,.35);
+}
+.portfolio-tabs a:active{transform:scale(.97)}
+.portfolio-shell{
+  position:relative;
+  isolation:isolate;
+  overflow:clip;
+  border-top:1px solid rgba(215,187,255,.24);
+  background:linear-gradient(180deg,rgba(8,9,34,.9),rgba(7,8,27,.97));
+}
+.portfolio-shell:before{
+  position:absolute;z-index:-2;inset:0;content:"";pointer-events:none;
+  background:url('assets/astral-portfolio-background.webp') center 22%/cover;
+  opacity:.22;
+}
+.portfolio-shell:after{
+  position:absolute;z-index:-1;inset:0;content:"";pointer-events:none;
+  background:linear-gradient(180deg,rgba(8,9,33,.42),rgba(7,8,27,.88) 26%,rgba(7,8,27,.94));
+}
+.visitor-banner,.timeline-item,.skill-card,.project-card,.learning-card,.contact-section{
+  border-color:rgba(207,179,255,.34);
+  background:linear-gradient(145deg,rgba(20,17,60,.82),rgba(9,13,41,.84));
+  box-shadow:inset 0 0 26px rgba(186,153,255,.05),0 14px 36px rgba(2,3,18,.2);
+  backdrop-filter:blur(13px);
+}
+.timeline-item,.skill-card,.project-card,.learning-card,.visitor-banner,.contact-section{
+  transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease,background .22s ease;
+}
+.timeline-item:hover,.skill-card:hover,.project-card:hover,.learning-card:hover{
+  border-color:rgba(242,219,255,.68);
+  box-shadow:0 0 28px rgba(156,112,255,.22),0 15px 35px rgba(3,4,20,.24);
+}
+.project-visual,.project-visual-content,.project-visual-digital,.project-visual-community{
+  background-image:linear-gradient(90deg,rgba(8,9,35,.48),rgba(16,13,49,.27)),url('assets/astral-portfolio-background.webp');
+  background-position:center 48%;
+  background-size:cover;
+}
+.contact-section{
+  background:linear-gradient(120deg,rgba(32,23,77,.89),rgba(12,17,48,.9) 65%,rgba(49,32,83,.84)),url('assets/astral-portfolio-background.webp') center/cover;
+}
+.site-footer{background:rgba(5,7,25,.92);backdrop-filter:blur(15px)}
+
+/* Tablet landscape: turn the hero into a two-level composition. */
+@media(max-width:1100px) and (min-width:761px){
+  .topbar{height:112px;min-height:112px;padding:0 20px;align-items:flex-start}
+  .brand-hotspot{position:absolute;left:20px;top:13px}
+  .sound-toggle{position:absolute;right:20px;top:14px}
+  .main-nav{
+    position:absolute;left:14px;right:14px;top:64px;width:auto;height:38px;
+    justify-content:flex-start;overflow-x:auto;scrollbar-width:none;
+  }
+  .main-nav::-webkit-scrollbar{display:none}
+  .main-nav a{flex:0 0 auto;height:35px;padding:0 11px;font-size:10px}
+  .game-home{height:auto;min-height:1160px;max-height:none}
+  .reference-art{background-size:auto 1050px;background-position:25% 0}
+  .art-vignette{background:linear-gradient(180deg,rgba(5,6,28,.16),rgba(5,6,28,.04) 34%,rgba(5,6,28,.55) 100%)}
+  .hero-intro{left:36%;top:17%;width:60%;max-width:none}
+  .hero-intro h1{font-size:clamp(40px,5vw,56px)}
+  .hero-profile-card{left:36%;right:auto;top:51%;width:60%;max-width:none}
+  .hero-capabilities{left:5%;right:5%;bottom:4%;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .hero-capabilities article{min-height:58px}
+  .social-hotspots{left:3%;bottom:4.3%}
+  .scroll-hotspot{display:none}
+  .welcome-overlay{padding:124px 16px 16px}
+  .welcome-modal{max-height:calc(100svh - 140px)}
+}
+
+/* Mobile: stack the artwork, hero copy, profile and capability cards. */
+@media(max-width:760px){
+  html{scroll-padding-top:82px}
+  .game-home{height:auto;min-height:1450px;max-height:none}
+  .reference-art{background-size:auto 910px;background-position:24% 0;background-repeat:no-repeat}
+  .art-vignette{background:linear-gradient(180deg,rgba(5,6,28,.09),rgba(5,6,28,.03) 29%,rgba(5,6,28,.68) 62%,rgba(5,6,28,.9) 100%)}
+  .topbar{height:116px;min-height:116px;padding:0 14px;align-items:flex-start}
+  .brand-hotspot{position:absolute;left:14px;top:12px;gap:8px}
+  .brand-emblem{width:36px;height:36px;font-size:23px}
+  .brand-copy strong{font-size:17px}
+  .brand-copy small{font-size:7px}
+  .sound-toggle{position:absolute;right:14px;top:13px;width:auto;min-width:74px;height:35px;padding:0 9px;gap:5px}
+  .sound-symbol{font-size:13px}
+  .sound-state{font-size:8px}
+  .toggle-dot{width:12px;height:12px}
+  .main-nav{
+    position:absolute;left:10px;right:10px;top:63px;width:auto;height:42px;
+    justify-content:flex-start;gap:5px;overflow-x:auto;scrollbar-width:none;
+  }
+  .main-nav::-webkit-scrollbar{display:none}
+  .main-nav a{flex:0 0 auto;height:36px;padding:0 10px;font-size:10px}
+  .main-nav a:before{margin-right:5px}
+  .hero-intro{
+    left:5%;right:5%;top:470px;width:auto;max-width:none;
+    padding:21px;border-radius:17px;
+    background:linear-gradient(145deg,rgba(10,11,43,.88),rgba(18,15,57,.8));
+  }
+  .hero-eyebrow{font-size:8px}
+  .hero-greeting{margin-top:7px;font-size:16px}
+  .hero-intro h1{font-size:clamp(38px,10vw,49px)}
+  .hero-role{font-size:10px}
+  .hero-description{font-size:11px;line-height:1.8}
+  .hero-actions{gap:8px}
+  .hero-primary-action,.hero-secondary-action{min-height:41px;padding:0 13px;font-size:10px}
+  .hero-profile-card{
+    left:5%;right:5%;top:810px;width:auto;max-width:none;
+    padding:17px;border-radius:17px;
+  }
+  .profile-avatar{width:82px;flex-basis:82px}
+  .profile-card-copy h2{font-size:22px}
+  .profile-card-copy li{font-size:9px}
+  .hero-profile-card blockquote{margin-top:12px;font-size:13px}
+  .hero-capabilities{
+    left:5%;right:5%;bottom:54px;
+    grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;
+  }
+  .hero-capabilities article{min-height:56px;padding:9px;gap:8px}
+  .hero-capabilities article>span{font-size:19px}
+  .hero-capabilities strong{font-size:10px}
+  .hero-capabilities small{font-size:8px}
+  .social-hotspots{left:14px;bottom:12px;gap:6px}
+  .social-hotspots a{width:30px;height:30px;font-size:8px}
+  .scroll-hotspot{left:auto;right:10px;bottom:10px;transform:none;font-size:8px}
+  .scroll-hotspot:hover{transform:translateY(-2px)}
+  .scroll-hotspot:active{transform:scale(.97)}
+  .welcome-overlay{padding:14px;place-items:center}
+  .welcome-backdrop{background:rgba(5,6,27,.54);backdrop-filter:blur(1px)}
+  .welcome-modal{
+    width:min(460px,calc(100vw - 28px));
+    max-height:calc(100svh - 28px);
+    padding:31px 21px 23px;
+    border-radius:19px;
+  }
+  .welcome-modal h1{font-size:29px}
+  .modal-description{font-size:10px;margin:12px 0 16px}
+  .input-shell{height:44px}
+  .input-shell input,.input-shell select{font-size:10px}
+  .portfolio-shell:before{background-attachment:scroll;background-position:25% top;opacity:.18}
+  .portfolio-tabs{justify-content:flex-start;gap:4px;padding:8px 10px}
+  .portfolio-tabs a{gap:6px;padding:9px 11px;font-size:10px}
+  .portfolio-content{width:calc(100% - 28px)}
+}
+@media(max-width:420px){
+  .game-home{min-height:1490px}
+  .hero-intro{top:460px}
+  .hero-profile-card{top:805px}
+  .hero-intro h1{font-size:41px}
+  .hero-capabilities{bottom:54px;gap:7px}
+  .hero-capabilities article{padding:8px;gap:7px}
+  .hero-capabilities small{font-size:7px}
+  .form-grid{gap:8px}
+}
+
+/* Button and card motion respects operating-system reduced-motion settings. */
+body.motion-paused .hero-profile-card,
+body.motion-paused .hero-capabilities article{
+  animation:none!important;transition:none!important;
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}

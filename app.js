@@ -39,6 +39,13 @@ function readVisitor() {
 
   if (!company || !name || !yearText || !gender) {
     errorBox.textContent = 'Bạn hãy điền đầy đủ thông tin để bắt đầu nhé.';
+    const firstMissing = [
+      [fields.company, company],
+      [fields.name, name],
+      [fields.year, yearText],
+      [fields.gender, gender]
+    ].find(([, value]) => !value);
+    firstMissing?.[0].focus();
     return null;
   }
   if (!Number.isInteger(year) || year < Number(fields.year.min) || year > currentYear) {
@@ -92,7 +99,7 @@ document.getElementById('journeyButton').addEventListener('click', () => {
   document.getElementById('journey').scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 document.getElementById('scrollButton').addEventListener('click', () => {
-  document.querySelector('.portfolio-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('journey').scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 
 motionToggle.addEventListener('click', () => {
@@ -135,6 +142,8 @@ const sections = sectionLinks
   .map((link) => document.getElementById(link.dataset.section))
   .filter(Boolean);
 
+const headerLinks = [...document.querySelectorAll('.main-nav a[href^="#"]')];
+
 function setActiveSection(id) {
   sectionLinks.forEach((link) => {
     if (link.dataset.section === id) {
@@ -143,15 +152,33 @@ function setActiveSection(id) {
       link.removeAttribute('aria-current');
     }
   });
+
+  headerLinks.forEach((link) => {
+    const target = link.getAttribute('href').slice(1);
+    if (target === id) {
+      link.setAttribute('aria-current', 'page');
+    } else {
+      link.removeAttribute('aria-current');
+    }
+  });
 }
 
 function updateActiveSection() {
+  const home = document.getElementById('home');
+  const homeBounds = home.getBoundingClientRect();
+
+  if (homeBounds.bottom > 150) {
+    setActiveSection('home');
+    sectionLinks.forEach((link) => link.removeAttribute('aria-current'));
+    return;
+  }
+
   if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
     setActiveSection(sections[sections.length - 1].id);
     return;
   }
 
-  const marker = 115;
+  const marker = 118;
   const activeSection = sections.reduce((closest, section) => {
     const bounds = section.getBoundingClientRect();
     const distance = bounds.top <= marker && bounds.bottom >= marker
@@ -159,6 +186,7 @@ function updateActiveSection() {
       : Math.min(Math.abs(bounds.top - marker), Math.abs(bounds.bottom - marker));
     return distance < closest.distance ? { section, distance } : closest;
   }, { section: sections[0], distance: Infinity });
+
   if (activeSection.section) setActiveSection(activeSection.section.id);
 }
 

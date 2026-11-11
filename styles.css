@@ -42,7 +42,7 @@ body{background:#07091f;color:var(--white)}
   background:#080a29;
 }
 .reference-art{
-  background-image:url('assets/astral-portfolio-background.webp');
+  background-image:url('assets/portfolio-home-reference.webp');
   background-position:center center;
   background-size:cover;
   transform:scale(1.002);
@@ -218,7 +218,7 @@ body{background:#07091f;color:var(--white)}
 .profile-avatar{
   flex:none;width:clamp(78px,7.3vw,112px);aspect-ratio:1;border-radius:50%;
   border:2px solid rgba(221,190,255,.87);
-  background-image:url('assets/astral-portfolio-background.webp');
+  background-image:url('assets/portfolio-home-reference.webp');
   background-size:330% auto;background-position:0% 43%;
   box-shadow:0 0 0 5px rgba(150,103,255,.14),0 0 24px rgba(175,139,255,.42);
 }
@@ -298,7 +298,7 @@ body{background:#07091f;color:var(--white)}
 }
 .portfolio-shell:before{
   position:absolute;z-index:-2;inset:0;content:"";pointer-events:none;
-  background:url('assets/astral-portfolio-background.webp') center 22%/cover fixed;
+  background:url('assets/portfolio-home-reference.webp') center 22%/cover fixed;
   opacity:.3;filter:saturate(.9);
 }
 .portfolio-shell:after{
@@ -325,20 +325,20 @@ body{background:#07091f;color:var(--white)}
 .project-visual{
   background-image:
     linear-gradient(90deg,rgba(8,9,35,.45),rgba(16,13,49,.24)),
-    url('assets/astral-portfolio-background.webp');
+    url('assets/portfolio-home-reference.webp');
   background-position:center 48%;
   background-size:cover;
 }
 .project-visual-content,.project-visual-digital,.project-visual-community{
   background-image:
     linear-gradient(90deg,rgba(8,9,35,.58),rgba(16,13,49,.32)),
-    url('assets/astral-portfolio-background.webp');
+    url('assets/portfolio-home-reference.webp');
   background-position:center 63%;background-size:cover;
 }
 .contact-section{
   background:
     linear-gradient(120deg,rgba(32,23,77,.88),rgba(12,17,48,.87) 65%,rgba(49,32,83,.8)),
-    url('assets/astral-portfolio-background.webp') center/cover;
+    url('assets/portfolio-home-reference.webp') center/cover;
 }
 .site-footer{background:rgba(5,7,25,.9);backdrop-filter:blur(15px)}
 body.motion-paused .hero-profile-card,body.motion-paused .hero-capabilities article{transition:none}
@@ -654,7 +654,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{
 }
 .reference-art{
   z-index:-3;
-  background-image:url('assets/astral-portfolio-background.webp') !important;
+  background-image:url('assets/portfolio-home-reference.webp') !important;
   background-position:center 48%;
   background-size:cover;
   background-repeat:no-repeat;
@@ -1078,7 +1078,7 @@ button,.filter-button,.primary-action,.secondary-action,.hero-primary-action,.he
 }
 .portfolio-shell:before{
   position:absolute;z-index:-2;inset:0;content:"";pointer-events:none;
-  background:url('assets/astral-portfolio-background.webp') center 22%/cover;
+  background:url('assets/portfolio-home-reference.webp') center 22%/cover;
   opacity:.22;
 }
 .portfolio-shell:after{
@@ -1099,12 +1099,12 @@ button,.filter-button,.primary-action,.secondary-action,.hero-primary-action,.he
   box-shadow:0 0 28px rgba(156,112,255,.22),0 15px 35px rgba(3,4,20,.24);
 }
 .project-visual,.project-visual-content,.project-visual-digital,.project-visual-community{
-  background-image:linear-gradient(90deg,rgba(8,9,35,.48),rgba(16,13,49,.27)),url('assets/astral-portfolio-background.webp');
+  background-image:linear-gradient(90deg,rgba(8,9,35,.48),rgba(16,13,49,.27)),url('assets/portfolio-home-reference.webp');
   background-position:center 48%;
   background-size:cover;
 }
 .contact-section{
-  background:linear-gradient(120deg,rgba(32,23,77,.89),rgba(12,17,48,.9) 65%,rgba(49,32,83,.84)),url('assets/astral-portfolio-background.webp') center/cover;
+  background:linear-gradient(120deg,rgba(32,23,77,.89),rgba(12,17,48,.9) 65%,rgba(49,32,83,.84)),url('assets/portfolio-home-reference.webp') center/cover;
 }
 .site-footer{background:rgba(5,7,25,.92);backdrop-filter:blur(15px)}
 
@@ -1581,4 +1581,301 @@ body.motion-paused .hero-capabilities article{
   .welcome-modal{padding:46px 17px 17px}
   .welcome-modal h1{font-size:26px}
   .modal-kicker{letter-spacing:.11em;gap:6px}
+}
+
+
+/* ==========================================================
+   SINGLE-VIEW PORTFOLIO TABS
+   Navigation stays fixed; selecting a tab swaps the visible page
+   instead of scrolling through a long one-page document.
+   ========================================================== */
+:root{--portfolio-header-height:82px}
+html,body{width:100%;height:100%;overflow:hidden}
+body{overflow:hidden}
+.scroll-progress{display:none !important}
+.topbar{
+  position:fixed !important;
+  top:0;left:0;right:0;
+  z-index:100;
+  height:var(--portfolio-header-height) !important;
+  min-height:var(--portfolio-header-height) !important;
+}
+.brand-hotspot{flex:0 0 auto}
+.main-nav{flex:1 1 auto;min-width:0}
+.main-nav a[role="tab"]{cursor:pointer}
+.main-nav a[aria-selected="true"]{
+  color:#fff;
+  border-color:rgba(207,175,255,.65);
+  background:linear-gradient(120deg,rgba(147,103,255,.38),rgba(91,91,186,.24));
+  box-shadow:0 0 22px rgba(158,117,255,.3),inset 0 -2px rgba(231,207,255,.82);
+}
+main{
+  width:100%;
+  height:calc(100svh - var(--portfolio-header-height));
+  margin:var(--portfolio-header-height) 0 0 !important;
+  padding:0 !important;
+  overflow:hidden;
+}
+.game-home{
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:0;
+  max-height:none;
+  overflow:hidden;
+}
+.reference-art{
+  background-image:url('assets/portfolio-home-reference.webp') !important;
+  background-size:cover;
+  background-position:center center;
+  image-rendering:auto;
+}
+.art-vignette{
+  background:
+    linear-gradient(90deg,rgba(5,6,28,.01) 0%,rgba(5,6,28,.02) 40%,rgba(5,6,28,.08) 72%,rgba(5,6,28,.15) 100%),
+    linear-gradient(180deg,rgba(5,6,28,.27),transparent 20%,transparent 80%,rgba(5,6,28,.35));
+}
+.welcome-overlay{
+  position:absolute !important;
+  inset:0 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+  padding:18px clamp(24px,4.2vw,76px) 20px 0 !important;
+}
+.welcome-backdrop{
+  background:linear-gradient(90deg,transparent 0%,transparent 52%,rgba(5,6,27,.08) 76%,rgba(5,6,27,.18) 100%) !important;
+  backdrop-filter:none !important;
+}
+.welcome-modal{
+  width:min(490px,37vw);
+  min-width:380px;
+  max-width:490px;
+  max-height:calc(100% - 20px);
+  padding:49px clamp(25px,2.1vw,32px) 20px;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+.welcome-modal h1{font-size:clamp(27px,2vw,33px)}
+.modal-description{margin:8px 0 12px}
+.welcome-modal form>label{margin:6px 0 3px}
+.welcome-modal form>.input-shell{height:44px;min-height:44px;margin-bottom:4px}
+.modal-submit{height:47px;min-height:47px;margin-top:4px}
+.privacy-note{margin-top:8px}
+
+/* A custom listbox replaces the browser-native white select menu. */
+.custom-select{
+  position:relative;
+  z-index:2;
+  overflow:visible !important;
+}
+.gender-trigger{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex:1 1 auto;
+  min-width:0;
+  width:100%;
+  height:100%;
+  padding:0 2px 0 8px;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:#9e93b8;
+  font:400 11px 'Be Vietnam Pro',sans-serif;
+  text-align:left;
+  cursor:pointer;
+}
+.gender-trigger .gender-chevron{
+  flex:none;
+  margin-left:10px;
+  color:#d7c4ff;
+  font-size:15px;
+  transition:transform .2s ease;
+}
+.custom-select:focus-within{
+  border-color:rgba(193,160,255,.9) !important;
+  box-shadow:0 0 0 2px rgba(155,112,255,.16),0 0 18px rgba(158,121,255,.2) !important;
+}
+.custom-select.is-open{z-index:35}
+.custom-select.is-open .gender-chevron{transform:rotate(180deg)}
+.custom-select.has-value .gender-trigger{color:#fff}
+.gender-options{
+  position:absolute;
+  left:-1px;
+  right:-1px;
+  top:calc(100% + 7px);
+  z-index:80;
+  display:grid;
+  gap:4px;
+  padding:7px;
+  border:1px solid rgba(206,176,255,.62);
+  border-radius:13px;
+  background:linear-gradient(145deg,rgba(22,18,65,.99),rgba(9,11,40,.99));
+  box-shadow:0 12px 34px rgba(2,3,20,.58),0 0 22px rgba(151,105,255,.3);
+  backdrop-filter:blur(18px);
+}
+.gender-options[hidden]{display:none !important}
+.gender-options button{
+  width:100%;
+  min-height:38px;
+  display:flex;
+  align-items:center;
+  padding:0 12px;
+  border:1px solid transparent;
+  border-radius:8px;
+  background:transparent;
+  color:#e9e1fa;
+  font:500 11px 'Be Vietnam Pro',sans-serif;
+  text-align:left;
+  cursor:pointer;
+  transition:background .18s,border-color .18s,box-shadow .18s,color .18s;
+}
+.gender-options button:before{
+  content:"✧";
+  width:18px;
+  flex:none;
+  color:#bda4f2;
+  opacity:0;
+}
+.gender-options button:hover,
+.gender-options button:focus-visible,
+.gender-options button[aria-selected="true"]{
+  outline:none;
+  color:#fff;
+  border-color:rgba(205,174,255,.42);
+  background:linear-gradient(100deg,rgba(139,96,222,.3),rgba(89,95,192,.2));
+  box-shadow:inset 0 0 12px rgba(207,181,255,.07);
+}
+.gender-options button[aria-selected="true"]:before{opacity:1}
+.gender-options button:active{transform:scale(.985)}
+input[type="hidden"]{display:none !important}
+
+/* Only the selected panel is displayed. Each page can scroll internally
+   when its content is longer than the available viewport. */
+body[data-active-tab="home"] .portfolio-shell{display:none !important}
+body:not([data-active-tab="home"]) .game-home{display:none !important}
+body:not([data-active-tab="home"]) .portfolio-shell{
+  display:block !important;
+  width:100%;
+  height:100%;
+  min-height:0;
+  max-height:none;
+  overflow:hidden;
+  border:0;
+}
+.portfolio-tabs,.visitor-banner,.site-footer{display:none !important}
+.portfolio-shell:before{
+  background-image:url('assets/portfolio-home-reference.webp') !important;
+  background-attachment:scroll;
+  opacity:.23;
+}
+.portfolio-content{
+  width:min(1240px,calc(100% - 64px));
+  height:100%;
+  min-height:0;
+  max-height:none;
+  margin:0 auto;
+  padding:clamp(24px,4vh,44px) 0;
+  box-sizing:border-box;
+  overflow-x:hidden;
+  overflow-y:auto;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(177,145,239,.58) rgba(8,9,32,.2);
+}
+.portfolio-content > .content-section,
+.portfolio-content > .contact-section{
+  display:none !important;
+  width:100%;
+  margin:0;
+  animation:none;
+}
+.portfolio-content > .content-section.is-active,
+.portfolio-content > .contact-section.is-active{
+  display:block !important;
+  animation:portfolioTabIn .32s ease both;
+}
+@keyframes portfolioTabIn{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.content-section .section-heading{margin-bottom:24px}
+.content-section .section-heading h2,
+.contact-section h2{font-size:clamp(30px,3.2vw,46px)}
+.contact-section{
+  display:none !important;
+  min-height:calc(100% - 6px);
+  box-sizing:border-box;
+  padding:clamp(28px,5vw,68px);
+  justify-content:center;
+}
+.contact-section.is-active{display:flex !important}
+body[data-active-tab="home"] .topbar .main-nav a[aria-selected="true"]{box-shadow:0 0 24px rgba(158,117,255,.32),inset 0 -2px rgba(231,207,255,.82)}
+
+/* Tablet and smaller desktop: compact but persistent tab strip. */
+@media(max-width:1100px){
+  :root{--portfolio-header-height:108px}
+  .topbar{align-items:flex-start;padding:0 18px}
+  .brand-hotspot{position:absolute;left:18px;top:12px}
+  .sound-toggle{position:absolute;right:18px;top:14px}
+  .main-nav{
+    position:absolute;
+    left:12px;right:12px;top:62px;
+    width:auto;height:38px;
+    display:flex;justify-content:flex-start;
+    gap:5px;overflow-x:auto;scrollbar-width:none;
+  }
+  .main-nav::-webkit-scrollbar{display:none}
+  .main-nav a{flex:0 0 auto;height:34px;padding:0 12px;font-size:10px}
+  .game-home{height:100%;min-height:0}
+  .welcome-overlay{padding-right:20px !important}
+  .welcome-modal{width:min(430px,46vw);min-width:340px}
+  .portfolio-content{width:calc(100% - 42px);padding:26px 0}
+}
+@media(max-width:760px){
+  :root{--portfolio-header-height:112px}
+  main{height:calc(100svh - var(--portfolio-header-height))}
+  .topbar{height:var(--portfolio-header-height) !important;min-height:var(--portfolio-header-height) !important}
+  .game-home{height:100%;min-height:0;overflow:auto}
+  .reference-art{
+    background-size:auto 100%;
+    background-position:24% center;
+    background-repeat:no-repeat;
+  }
+  .welcome-overlay{
+    position:absolute !important;
+    inset:0 !important;
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr);
+    place-items:center !important;
+    padding:14px !important;
+  }
+  .welcome-backdrop{background:rgba(5,6,27,.38) !important}
+  .welcome-modal{
+    justify-self:center;
+    width:min(460px,calc(100vw - 28px));
+    min-width:0;
+    max-width:460px;
+    max-height:calc(100% - 24px);
+    padding:48px 21px 18px;
+  }
+  .welcome-modal h1{font-size:28px}
+  .welcome-modal form>.input-shell{height:43px;min-height:43px}
+  .gender-options{top:auto;bottom:calc(100% + 7px)}
+  .portfolio-content{width:calc(100% - 28px);padding:20px 0}
+  .portfolio-content > .content-section,
+  .portfolio-content > .contact-section{padding-bottom:24px}
+}
+@media(max-width:420px){
+  .main-nav a{padding:0 9px;font-size:9px}
+  .main-nav a:before{margin-right:4px}
+  .welcome-modal{padding:45px 17px 17px}
+  .welcome-modal h1{font-size:25px}
+  .gender-options button{min-height:36px}
+}
+
+/* Page changes remain immediate; reduced-motion preferences are respected. */
+@media(prefers-reduced-motion:reduce){
+  .portfolio-content > .content-section.is-active,
+  .portfolio-content > .contact-section.is-active{animation:none}
 }

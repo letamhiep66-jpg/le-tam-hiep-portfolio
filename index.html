@@ -14,28 +14,28 @@
 </head>
 <body>
   <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+        <header class="topbar">
+        <a class="brand-hotspot" href="#home" data-tab="home" aria-label="Lê Tam Hiệp — Trang chủ">
+          <span class="brand-emblem" aria-hidden="true">✧</span>
+          <span class="brand-copy"><strong>Lê Tam Hiệp</strong><small>PORTFOLIO · 2026</small></span>
+        </a>
+        <nav class="main-nav" role="tablist" aria-label="Portfolio pages">
+          <a class="nav-home" href="#home" data-tab="home" role="tab" aria-selected="true" aria-label="Trang chủ"><span>Trang chủ</span></a>
+          <a class="nav-journey" href="#journey" data-tab="journey" role="tab" aria-selected="false" aria-label="Hành trình"><span>Hành trình</span></a>
+          <a class="nav-skills" href="#skills" data-tab="skills" role="tab" aria-selected="false" aria-label="Kỹ năng"><span>Kỹ năng</span></a>
+          <a class="nav-projects" href="#projects" data-tab="projects" role="tab" aria-selected="false" aria-label="Dự án"><span>Dự án</span></a>
+          <a class="nav-certificates" href="#certificates" data-tab="certificates" role="tab" aria-selected="false" aria-label="Chứng chỉ"><span>Chứng chỉ</span></a>
+          <a class="nav-contact" href="#contact" data-tab="contact" role="tab" aria-selected="false" aria-label="Liên hệ"><span>Liên hệ</span></a>
+        </nav>
+        <button class="sound-toggle" id="motionToggle" type="button" aria-pressed="true" aria-label="Bật hoặc tắt hiệu ứng chuyển động" title="Bật / tắt chuyển động"><span class="sound-symbol" aria-hidden="true">✦</span><span class="sound-state">ON</span><span class="toggle-dot"></span></button>
+      </header>
   <main>
-    <section class="game-home" id="home" aria-label="Trang chủ Portfolio">
+    <section class="game-home" id="home" role="tabpanel" aria-label="Trang chủ Portfolio">
       <div class="reference-art" role="img" aria-label="Minh họa thành phố fantasy về đêm, nhân vật đứng giữa hoa anh đào và bầu trời sao"></div>
       <div class="art-vignette" aria-hidden="true"></div>
       <div class="ambient-stars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 
-      <!-- Accessible, functional navigation aligned over the reference artwork. -->
-      <header class="topbar">
-        <a class="brand-hotspot" href="#home" aria-label="Lê Tam Hiệp — Trang chủ">
-          <span class="brand-emblem" aria-hidden="true">✧</span>
-          <span class="brand-copy"><strong>Lê Tam Hiệp</strong><small>PORTFOLIO · 2026</small></span>
-        </a>
-        <nav class="main-nav" aria-label="Điều hướng chính">
-          <a class="nav-home" href="#home" aria-label="Trang chủ"><span>Trang chủ</span></a>
-          <a class="nav-journey" href="#journey" aria-label="Hành trình"><span>Hành trình</span></a>
-          <a class="nav-skills" href="#skills" aria-label="Kỹ năng"><span>Kỹ năng</span></a>
-          <a class="nav-projects" href="#projects" aria-label="Dự án"><span>Dự án</span></a>
-          <a class="nav-certificates" href="#certificates" aria-label="Chứng chỉ"><span>Chứng chỉ</span></a>
-          <a class="nav-contact" href="#contact" aria-label="Liên hệ"><span>Liên hệ</span></a>
-        </nav>
-        <button class="sound-toggle" id="motionToggle" type="button" aria-pressed="true" aria-label="Bật hoặc tắt hiệu ứng chuyển động" title="Bật / tắt chuyển động"><span class="sound-symbol" aria-hidden="true">✦</span><span class="sound-state">ON</span><span class="toggle-dot"></span></button>
-      </header>
+
 
       <p class="sr-only" id="visitorGreeting" aria-live="polite"></p>
 
@@ -98,8 +98,19 @@
             <div class="input-shell"><span>▦</span><input id="company" name="visitorOrganization" type="text" placeholder="Ví dụ: PixOn, VNG, Google..." autocomplete="new-password" autocapitalize="words" spellcheck="false" required></div>
             <label for="visitorName">Họ và tên của bạn</label>
             <div class="input-shell"><span>♙</span><input id="visitorName" name="visitorFullName" type="text" placeholder="Nhập tên người tham dự" autocomplete="new-password" autocapitalize="words" spellcheck="false" required></div>
-            <label for="gender">Giới tính</label>
-            <div class="input-shell select-shell gender-field"><span>✧</span><select id="gender" name="gender" required><option value="" selected disabled>Chọn</option><option value="male">Nam</option><option value="female">Nữ</option><option value="other">Khác / Không chia sẻ</option></select></div>
+            <label id="genderLabel" for="genderTrigger">Giới tính</label>
+            <div class="input-shell gender-field custom-select">
+              <span aria-hidden="true">✧</span>
+              <button id="genderTrigger" class="gender-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="genderOptions">
+                <span id="genderValue">Chọn</span><span class="gender-chevron" aria-hidden="true">⌄</span>
+              </button>
+              <input id="gender" name="gender" type="hidden" value="">
+              <div class="gender-options" id="genderOptions" role="listbox" aria-labelledby="genderLabel" hidden>
+                <button type="button" role="option" aria-selected="false" data-value="male">Nam</button>
+                <button type="button" role="option" aria-selected="false" data-value="female">Nữ</button>
+                <button type="button" role="option" aria-selected="false" data-value="other">Khác / Không chia sẻ</button>
+              </div>
+            </div>
             <p class="form-error" id="formError" role="alert" aria-live="polite"></p>
             <button class="modal-submit" type="submit"><span>➤</span> Bắt đầu khám phá <b>✦</b></button>
           </form>
@@ -108,8 +119,8 @@
       </div>
     </section>
 
-    <div class="portfolio-shell">
-      <nav class="portfolio-tabs" aria-label="Các chương Portfolio">
+    <div class="portfolio-shell" hidden>
+      <nav class="portfolio-tabs" aria-label="Các chương Portfolio" hidden>
         <a href="#journey" data-section="journey"><span>01</span> Hành trình</a>
         <a href="#skills" data-section="skills"><span>02</span> Kỹ năng</a>
         <a href="#projects" data-section="projects"><span>03</span> Dự án</a>
@@ -128,7 +139,7 @@
           <a class="text-link" href="#contact">Kết nối <span aria-hidden="true">↗</span></a>
         </section>
 
-        <section class="content-section" id="journey" aria-labelledby="journeyTitle">
+        <section class="content-section" id="journey" role="tabpanel" tabindex="-1" aria-labelledby="journeyTitle">
           <div class="section-heading">
             <div><p class="section-kicker">CHAPTER 01 · THE JOURNEY</p><h2 id="journeyTitle">Hành trình</h2></div>
             <p>Mỗi trải nghiệm là một cơ hội để quan sát, cộng tác và trưởng thành.</p>
@@ -140,7 +151,7 @@
           </div>
         </section>
 
-        <section class="content-section" id="skills" aria-labelledby="skillsTitle">
+        <section class="content-section" id="skills" role="tabpanel" tabindex="-1" aria-labelledby="skillsTitle">
           <div class="section-heading">
             <div><p class="section-kicker">CHAPTER 02 · TOOLKIT</p><h2 id="skillsTitle">Kỹ năng & tư duy</h2></div>
             <p>Những mảng chuyên môn Hiệp quan tâm và muốn liên tục phát triển.</p>
@@ -156,7 +167,7 @@
           <p class="skills-note">Các chủ đề thể hiện phạm vi chuyên môn quan tâm; kinh nghiệm và kết quả sẽ được bổ sung theo từng case study xác thực.</p>
         </section>
 
-        <section class="content-section" id="projects" aria-labelledby="projectsTitle">
+        <section class="content-section" id="projects" role="tabpanel" tabindex="-1" aria-labelledby="projectsTitle">
           <div class="section-heading">
             <div><p class="section-kicker">CHAPTER 03 · SELECTED WORK</p><h2 id="projectsTitle">Dự án & lĩnh vực quan tâm</h2></div>
             <p>Các hướng triển khai phản ánh mối quan tâm chuyên môn; case study và kết quả cụ thể sẽ được cập nhật khi có dữ liệu xác nhận.</p>
@@ -177,7 +188,7 @@
           </div>
         </section>
 
-        <section class="content-section" id="certificates" aria-labelledby="certificatesTitle">
+        <section class="content-section" id="certificates" role="tabpanel" tabindex="-1" aria-labelledby="certificatesTitle">
           <div class="section-heading">
             <div><p class="section-kicker">CHAPTER 04 · LEARNING LOG</p><h2 id="certificatesTitle">Chứng chỉ & học tập</h2></div>
             <p>Phân biệt rõ nội dung đang theo đuổi với chứng chỉ đã hoàn thành.</p>
@@ -189,7 +200,7 @@
           <div class="honesty-note"><span aria-hidden="true">✧</span><p><strong>Hồ sơ chứng chỉ:</strong> Chưa có tên khóa học, đơn vị cấp hoặc minh chứng cụ thể được cung cấp. Khu vực này sẽ chỉ hiển thị chứng chỉ sau khi có thông tin xác thực.</p></div>
         </section>
 
-        <section class="contact-section" id="contact" aria-labelledby="contactTitle">
+        <section class="contact-section" id="contact" role="tabpanel" tabindex="-1" aria-labelledby="contactTitle">
           <div class="contact-orbit" aria-hidden="true">✧</div>
           <p class="section-kicker">CHAPTER 05 · OPEN TO OPPORTUNITIES</p>
           <h2 id="contactTitle">Cùng tạo nên điều có ý nghĩa.</h2>
@@ -199,7 +210,7 @@
         </section>
       </div>
     </div>
-    <footer class="site-footer"><span>✧ LÊ TAM HIỆP — INTERACTIVE PORTFOLIO</span><a href="#home">Về đầu trang ↑</a><span>Designed as a journey, not just a résumé.</span></footer>
+    <footer class="site-footer" hidden><span>✧ LÊ TAM HIỆP — INTERACTIVE PORTFOLIO</span><a href="#home">Về đầu trang ↑</a><span>Designed as a journey, not just a résumé.</span></footer>
   </main>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="app.js" defer></script>

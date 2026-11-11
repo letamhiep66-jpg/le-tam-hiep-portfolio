@@ -8,7 +8,83 @@ const fields = {
   gender: document.getElementById('gender')
 };
 const motionToggle = document.getElementById('motionToggle');
+const genderTrigger = document.getElementById('genderTrigger');
+const genderMenu = document.getElementById('genderOptions');
+const genderValue = document.getElementById('genderValue');
+const genderField = document.querySelector('.custom-select');
+const genderOptions = [...genderMenu.querySelectorAll('[role="option"]')];
 document.body.classList.add('check-in-open');
+
+function closeGenderMenu({ restoreFocus = false } = {}) {
+  genderMenu.hidden = true;
+  genderField.classList.remove('is-open');
+  genderTrigger.setAttribute('aria-expanded', 'false');
+  if (restoreFocus) genderTrigger.focus();
+}
+
+function openGenderMenu() {
+  genderMenu.hidden = false;
+  genderField.classList.add('is-open');
+  genderTrigger.setAttribute('aria-expanded', 'true');
+  const selected = genderOptions.find((option) => option.dataset.value === fields.gender.value);
+  (selected || genderOptions[0]).focus();
+}
+
+function chooseGender(option) {
+  if (!option) return;
+  fields.gender.value = option.dataset.value;
+  genderValue.textContent = option.textContent.trim();
+  genderField.classList.add('has-value');
+  genderOptions.forEach((item) => {
+    const selected = item === option;
+    item.setAttribute('aria-selected', String(selected));
+    item.tabIndex = selected ? 0 : -1;
+  });
+  fields.gender.dispatchEvent(new Event('change', { bubbles: true }));
+  closeGenderMenu({ restoreFocus: true });
+}
+
+genderTrigger.addEventListener('click', () => {
+  if (genderMenu.hidden) openGenderMenu();
+  else closeGenderMenu();
+});
+
+genderOptions.forEach((option, index) => {
+  option.addEventListener('click', () => chooseGender(option));
+  option.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeGenderMenu({ restoreFocus: true });
+    } else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      const delta = event.key === 'ArrowDown' ? 1 : -1;
+      genderOptions[(index + delta + genderOptions.length) % genderOptions.length].focus();
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      genderOptions[0].focus();
+    } else if (event.key === 'End') {
+      event.preventDefault();
+      genderOptions[genderOptions.length - 1].focus();
+    } else if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      chooseGender(option);
+    }
+  });
+});
+
+genderTrigger.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowDown' || event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    if (genderMenu.hidden) openGenderMenu();
+    else genderOptions[0].focus();
+  } else if (event.key === 'Escape') {
+    closeGenderMenu();
+  }
+});
+
+document.addEventListener('click', (event) => {
+  if (!genderField.contains(event.target) && !genderMenu.hidden) closeGenderMenu();
+});
 
 function honorificFor(gender) {
   if (gender === 'male') return 'anh';
@@ -33,7 +109,7 @@ function readVisitor() {
     const firstMissing = [
       [fields.company, company],
       [fields.name, name],
-      [fields.gender, gender]
+      [genderTrigger, gender]
     ].find(([, value]) => !value);
     firstMissing?.[0].focus();
     return null;
@@ -50,6 +126,8 @@ function personalize(visitor) {
   document.getElementById('visitorBannerMessage').textContent = `${greeting} Cùng bắt đầu hành trình khám phá Portfolio nhé!`;
   overlay.classList.add('is-hidden');
   document.body.classList.remove('check-in-open');
+  activateTab('home', { updateHistory: false });
+  genderTrigger.blur();
   document.getElementById('journeyButton').focus({ preventScroll: true });
   showToast(`✧ ${greeting} Chào mừng đến với Portfolio!`);
 }
@@ -80,12 +158,8 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-document.getElementById('journeyButton').addEventListener('click', () => {
-  document.getElementById('journey').scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
-document.getElementById('scrollButton').addEventListener('click', () => {
-  document.getElementById('journey').scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
+document.getElementById('journeyButton').addEventListener('click', () => activateTab('journey'));
+document.getElementById('scrollButton').addEventListener('click', () => activateTab('journey'));
 
 motionToggle.addEventListener('click', () => {
   const paused = document.body.classList.toggle('motion-paused');
@@ -122,76 +196,62 @@ filterButtons.forEach((button) => {
   });
 });
 
-const sectionLinks = [...document.querySelectorAll('.portfolio-tabs a[data-section]')];
-const sections = sectionLinks
-  .map((link) => document.getElementById(link.dataset.section))
+const TAB_IDS = ['home', 'journey', 'skills', 'projects', 'certificates', 'contact'];
+const TAB_ID_SET = new Set(TAB_IDS);
+const homePanel = document.getElementById('home');
+const portfolioShell = document.querySelector('.portfolio-shell');
+const portfolioContent = document.querySelector('.portfolio-content');
+const mainTabLinks = [...document.querySelectorAll('.main-nav a[data-tab]')];
+const allTabPanels = TAB_IDS
+  .filter((id) => id !== 'home')
+  .map((id) => document.getElementById(id))
   .filter(Boolean);
 
-const headerLinks = [...document.querySelectorAll('.main-nav a[href^="#"]')];
+function activateTab(id, { updateHistory = true } = {}) {
+  if (!TAB_ID_SET.has(id)) return;
 
-function setActiveSection(id) {
-  sectionLinks.forEach((link) => {
-    if (link.dataset.section === id) {
-      link.setAttribute('aria-current', 'location');
-    } else {
-      link.removeAttribute('aria-current');
-    }
+  document.body.dataset.activeTab = id;
+  const isHome = id === 'home';
+  homePanel.hidden = !isHome;
+  portfolioShell.hidden = isHome;
+
+  allTabPanels.forEach((panel) => {
+    const active = panel.id === id;
+    panel.classList.toggle('is-active', active);
+    panel.setAttribute('aria-hidden', String(!active));
   });
 
-  headerLinks.forEach((link) => {
-    const target = link.getAttribute('href').slice(1);
-    if (target === id) {
-      link.setAttribute('aria-current', 'page');
-    } else {
-      link.removeAttribute('aria-current');
-    }
+  mainTabLinks.forEach((link) => {
+    const active = link.dataset.tab === id;
+    link.setAttribute('aria-selected', String(active));
+    if (active) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
   });
+
+  if (!isHome && portfolioContent) portfolioContent.scrollTop = 0;
+  if (updateHistory) {
+    const nextUrl = id === 'home'
+      ? window.location.pathname + window.location.search
+      : `#${id}`;
+    window.history.pushState({ portfolioTab: id }, '', nextUrl);
+  }
 }
 
-function updateActiveSection() {
-  const home = document.getElementById('home');
-  const homeBounds = home.getBoundingClientRect();
-
-  if (homeBounds.bottom > 150) {
-    setActiveSection('home');
-    sectionLinks.forEach((link) => link.removeAttribute('aria-current'));
-    return;
-  }
-
-  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
-    setActiveSection(sections[sections.length - 1].id);
-    return;
-  }
-
-  const marker = 118;
-  const activeSection = sections.reduce((closest, section) => {
-    const bounds = section.getBoundingClientRect();
-    const distance = bounds.top <= marker && bounds.bottom >= marker
-      ? 0
-      : Math.min(Math.abs(bounds.top - marker), Math.abs(bounds.bottom - marker));
-    return distance < closest.distance ? { section, distance } : closest;
-  }, { section: sections[0], distance: Infinity });
-
-  if (activeSection.section) setActiveSection(activeSection.section.id);
-}
-
-sectionLinks.forEach((link) => {
-  link.addEventListener('click', () => setActiveSection(link.dataset.section));
+document.addEventListener('click', (event) => {
+  const link = event.target.closest('a[href^="#"]');
+  if (!link) return;
+  const target = (link.dataset.tab || link.getAttribute('href').slice(1)).trim();
+  if (!TAB_ID_SET.has(target)) return;
+  event.preventDefault();
+  activateTab(target);
 });
 
-const progressBar = document.getElementById('scrollProgress');
-function updateScrollProgress() {
-  const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = scrollableHeight > 0
-    ? Math.min((window.scrollY / scrollableHeight) * 100, 100)
-    : 0;
-  const complete = scrollableHeight > 0 && window.scrollY >= scrollableHeight - 1;
-  progressBar.style.width = `${complete ? 100 : Math.max(progress, 0)}%`;
-  updateActiveSection();
-}
-window.addEventListener('scroll', updateScrollProgress, { passive: true });
-window.addEventListener('resize', updateScrollProgress);
-updateScrollProgress();
+window.addEventListener('popstate', () => {
+  const fromHash = window.location.hash.slice(1);
+  activateTab(TAB_ID_SET.has(fromHash) ? fromHash : 'home', { updateHistory: false });
+});
+
+activateTab('home', { updateHistory: false });
 
 async function sharePortfolio() {
   const shareData = {

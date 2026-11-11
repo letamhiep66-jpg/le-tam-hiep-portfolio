@@ -2594,3 +2594,226 @@ main{
 .check-in-open .hero-capabilities,
 .check-in-open .social-hotspots,
 .check-in-open .scroll-hotspot{visibility:hidden;opacity:0;pointer-events:none}
+
+
+/* =========================================================
+   HOMEPAGE VISUAL REFINEMENT — match the approved reference
+   Full-bleed atmosphere, portrait on the left, check-in card on the right.
+   ========================================================= */
+.game-home{background:#120d35;min-height:720px}
+.reference-art{
+  overflow:hidden;
+  background-color:#17103f;
+  background-image:
+    radial-gradient(ellipse at 8% 12%,rgba(250,190,233,.30),transparent 23%),
+    radial-gradient(ellipse at 22% 100%,rgba(225,157,255,.26),transparent 28%),
+    radial-gradient(ellipse at 80% 68%,rgba(151,119,255,.24),transparent 34%),
+    linear-gradient(110deg,rgba(24,13,61,.02) 0%,rgba(30,20,79,.22) 48%,rgba(28,20,75,.56) 100%),
+    url('assets/astral-portfolio-background.webp');
+  background-size:cover;
+  background-position:center;
+}
+.reference-art::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:56%;
+  background-image:
+    linear-gradient(90deg,rgba(15,10,38,.02) 0%,rgba(26,15,68,.02) 65%,rgba(29,20,76,.32) 100%),
+    url('assets/avatar-le-tam-hiep.webp');
+  background-repeat:no-repeat;
+  background-size:100% 100%,auto 100%;
+  background-position:center,left center;
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 70%,rgba(0,0,0,.8) 82%,transparent 100%);
+  mask-image:linear-gradient(90deg,#000 0%,#000 70%,rgba(0,0,0,.8) 82%,transparent 100%);
+  filter:saturate(1.02) contrast(1.025);
+}
+.reference-art::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    radial-gradient(ellipse 8px 4px at 5% 19%,rgba(255,203,237,.76) 0 45%,transparent 75%),
+    radial-gradient(ellipse 7px 4px at 16% 65%,rgba(255,191,232,.70) 0 45%,transparent 75%),
+    radial-gradient(ellipse 8px 4px at 38% 83%,rgba(255,208,238,.62) 0 45%,transparent 75%),
+    radial-gradient(ellipse 7px 4px at 54% 16%,rgba(245,204,255,.62) 0 45%,transparent 75%),
+    radial-gradient(ellipse 7px 4px at 73% 89%,rgba(255,197,232,.56) 0 45%,transparent 75%),
+    radial-gradient(ellipse 6px 4px at 93% 37%,rgba(255,207,241,.56) 0 45%,transparent 75%),
+    linear-gradient(180deg,rgba(9,7,33,.15),transparent 18%,transparent 76%,rgba(9,7,35,.28));
+  opacity:.9;
+}
+.topbar{
+  background:linear-gradient(180deg,rgba(11,8,37,.64),rgba(16,10,48,.30));
+  border-bottom:1px solid rgba(211,179,255,.48);
+  backdrop-filter:blur(15px);
+  -webkit-backdrop-filter:blur(15px);
+}
+.main-nav a[aria-selected="true"]{
+  border:1px solid rgba(213,177,255,.76);
+  border-radius:999px;
+  background:linear-gradient(110deg,rgba(129,82,222,.30),rgba(97,81,186,.19));
+  box-shadow:0 0 25px rgba(174,126,255,.35),inset 0 -2px 0 rgba(255,219,164,.9);
+}
+body.check-in-open .hero-intro,
+body.check-in-open .hero-profile-card,
+body.check-in-open .hero-capabilities{opacity:0;visibility:hidden;pointer-events:none}
+.art-vignette{
+  background:
+    linear-gradient(90deg,rgba(9,7,35,.03) 0%,transparent 34%,rgba(16,9,49,.10) 60%,rgba(12,9,39,.18) 100%),
+    linear-gradient(180deg,rgba(10,7,35,.08),transparent 18%,transparent 78%,rgba(12,8,39,.24));
+}
+.welcome-overlay{
+  display:block;
+  inset:0;
+  padding:0;
+  background:transparent;
+}
+.welcome-backdrop{
+  background:linear-gradient(90deg,transparent 0%,rgba(16,10,48,.035) 46%,rgba(17,11,51,.12) 100%);
+  backdrop-filter:none;
+}
+.welcome-modal{
+  position:absolute;
+  top:51%;
+  right:12.2%;
+  transform:translateY(-50%);
+  width:min(720px,38vw);
+  max-height:76svh;
+  overflow:auto;
+  padding:clamp(36px,4.3vh,48px) clamp(26px,2.7vw,44px) clamp(22px,2.8vh,30px);
+  border:1px solid rgba(209,169,255,.76);
+  border-radius:20px;
+  background:
+    radial-gradient(ellipse at 50% 0%,rgba(141,95,230,.18),transparent 48%),
+    linear-gradient(145deg,rgba(24,17,69,.86),rgba(12,12,48,.89) 58%,rgba(36,22,80,.84));
+  box-shadow:0 0 0 1px rgba(239,209,255,.10),0 0 38px rgba(159,105,255,.42),0 18px 55px rgba(4,4,26,.30),inset 0 0 35px rgba(185,141,255,.10);
+  backdrop-filter:blur(20px) saturate(125%);
+  -webkit-backdrop-filter:blur(20px) saturate(125%);
+}
+.welcome-modal::before{
+  content:"";
+  position:absolute;
+  inset:8px;
+  width:auto;
+  height:auto;
+  border:1px solid rgba(244,211,165,.26);
+  border-radius:15px;
+  background:none;
+  pointer-events:none;
+  transform:none;
+  left:8px;
+  top:8px;
+}
+.welcome-modal::after{
+  width:190px;
+  top:auto;
+  bottom:12px;
+  height:1px;
+  left:50%;
+  transform:translateX(-50%);
+}
+.modal-emblem{
+  top:-27px;
+  width:58px;
+  height:58px;
+  border:1px solid rgba(250,219,163,.96);
+  box-shadow:0 0 0 5px rgba(148,104,244,.12),0 0 28px rgba(235,187,255,.72);
+}
+.modal-kicker{margin:6px 0 17px;font-size:clamp(8px,.58vw,10px);letter-spacing:.22em}
+.welcome-modal h1{font-size:clamp(29px,2.6vw,43px);line-height:1.06}
+.modal-description{max-width:560px;margin:15px auto 22px;font-size:clamp(10px,.74vw,13px);line-height:1.75;color:#f0eaff}
+.welcome-modal form>label,
+.birth-year-field>label,
+.gender-field-wrap>label{
+  display:block;
+  margin:12px 0 7px;
+  color:#f7edff;
+  font-size:clamp(10px,.69vw,12px);
+  line-height:1.35;
+  font-weight:600;
+}
+.welcome-modal form>.input-shell,
+.birth-year-field>.input-shell,
+.gender-field-wrap>.input-shell{
+  height:clamp(44px,5.3vh,54px);
+  min-height:44px;
+  margin-bottom:8px;
+  border:1px solid rgba(177,143,255,.65);
+  border-radius:13px;
+  background:rgba(8,10,42,.62);
+  box-shadow:inset 0 0 18px rgba(169,129,255,.055),0 0 13px rgba(150,108,255,.09);
+}
+.welcome-modal form .input-shell:focus-within{
+  border-color:#e4c6ff;
+  box-shadow:0 0 0 2px rgba(176,123,255,.20),0 0 20px rgba(174,126,255,.22);
+}
+.input-shell input,.gender-trigger{font-size:clamp(11px,.77vw,14px)}
+.visitor-fields-row{gap:16px;margin-top:0}
+.birth-year-field,.gender-field-wrap{min-width:0}
+.gender-field-wrap .input-shell{margin-bottom:8px}
+.gender-trigger{width:100%;height:100%;text-align:left}
+.modal-submit{
+  width:100%;
+  min-height:clamp(49px,6.2vh,62px);
+  margin:8px auto 0;
+  border:1px solid rgba(255,224,174,.93);
+  border-radius:999px;
+  background:linear-gradient(100deg,#a45de9 0%,#8065ed 55%,#9c9cff 100%);
+  box-shadow:0 0 0 1px rgba(255,255,255,.13),0 0 28px rgba(173,122,255,.46),inset 0 1px 0 rgba(255,255,255,.28);
+  font-size:clamp(12px,.85vw,15px);
+}
+.modal-submit:hover{filter:brightness(1.1);box-shadow:0 0 38px rgba(195,150,255,.68)}
+.privacy-note{margin:13px 0 0;text-align:center;font-size:clamp(8px,.55vw,10px);line-height:1.5;color:#d8c9f1}
+.form-error{min-height:13px}
+.scroll-hotspot{
+  left:2.5%;
+  bottom:2.4%;
+  width:auto;
+  height:auto;
+  transform:none;
+  min-height:48px;
+  padding:9px 17px;
+  border:1px solid rgba(220,189,255,.58);
+  border-radius:14px;
+  background:linear-gradient(120deg,rgba(73,43,132,.50),rgba(39,31,94,.38));
+  box-shadow:0 0 22px rgba(165,115,255,.20);
+  font-size:11px;
+  backdrop-filter:blur(12px);
+}
+.social-hotspots{bottom:10%;left:2.5%;width:auto;gap:8px}
+.social-hotspots a{width:40px;height:40px;border:1px solid rgba(220,190,255,.52);background:rgba(24,14,62,.42)}
+.ambient-stars i{box-shadow:0 0 14px 5px rgba(230,190,255,.72)}
+/* Keep the guest form visually aligned and readable at laptop/tablet sizes. */
+@media (min-width:761px) and (max-width:1250px){
+  .welcome-modal{right:7.5%;width:min(590px,43vw);padding:42px 28px 22px}
+  .modal-description{margin:11px auto 14px}
+  .welcome-modal form>label,.birth-year-field>label,.gender-field-wrap>label{margin:8px 0 5px}
+  .welcome-modal form>.input-shell,.birth-year-field>.input-shell,.gender-field-wrap>.input-shell{height:44px;min-height:44px}
+}
+@media (max-width:760px){
+  .game-home{min-height:100svh;height:auto;max-height:none;padding-top:74px;padding-bottom:120px}
+  .reference-art{background-position:center;background-size:cover}
+  .reference-art::before{width:100%;background-size:100% 100%,auto 78%;background-position:center,left top;opacity:.78;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 57%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,#000 57%,transparent 100%)}
+  .topbar{position:absolute;height:72px;min-height:72px;background:rgba(12,8,39,.68)}
+  .brand-hotspot{left:3%;width:45%}
+  .main-nav{left:3%;right:3%;top:75px;width:94%;height:44px;display:flex;overflow-x:auto;gap:6px}
+  .main-nav a{position:relative;left:auto;flex:0 0 auto;width:auto;padding:0 12px}
+  .sound-toggle{right:3%;width:14%;height:42%;gap:5px}
+  .welcome-overlay{position:relative;inset:auto;display:block;padding:35px 14px 0}
+  .welcome-backdrop{display:none}
+  .welcome-modal{position:relative;top:auto;right:auto;transform:none;width:min(560px,100%);max-height:none;margin:0 auto;padding:44px 22px 25px}
+  .welcome-modal h1{font-size:30px}
+  .modal-description{font-size:11px;margin:11px auto 15px}
+  .welcome-modal form>label,.birth-year-field>label,.gender-field-wrap>label{font-size:10px;margin:8px 0 5px}
+  .visitor-fields-row{gap:10px}
+  .input-shell input,.gender-trigger{font-size:11px}
+  .modal-submit{min-height:50px}
+  .scroll-hotspot{left:14px;bottom:18px;min-height:42px}
+  .social-hotspots{left:14px;bottom:72px}
+  .hero-intro,.hero-profile-card,.hero-capabilities{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .ambient-stars i{animation:none}
+  .scroll-hotspot,.modal-submit,.main-nav a{transition:none}
+}

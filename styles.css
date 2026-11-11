@@ -2557,7 +2557,7 @@ main{
 
 /* Homepage refresh: lavender fantasy check-in, matching the supplied layout */
 .game-home{min-height:700px;background:#17153d}
-.reference-art{background-image:linear-gradient(90deg,rgba(8,8,34,.02),rgba(21,16,62,.08) 42%,rgba(27,20,75,.58)),url('assets/avatar-le-tam-hiep.webp');background-size:cover;background-position:24% center}
+.reference-art{background-image:linear-gradient(90deg,rgba(8,8,34,.02),rgba(21,16,62,.08) 42%,rgba(27,20,75,.58)),url('assets/portrait-le-tam-hiep.webp');background-size:100% 100%,auto 100%;background-position:center,left center;background-repeat:no-repeat;background-color:#20184f}
 .art-vignette{background:linear-gradient(180deg,rgba(18,12,49,.22),transparent 18%,transparent 75%,rgba(17,12,49,.2))}
 .topbar{height:10%;min-height:76px;background:linear-gradient(180deg,rgba(16,11,45,.70),rgba(18,14,51,.28));border-bottom:1px solid rgba(230,207,255,.25);backdrop-filter:blur(14px)}
 .brand-hotspot{display:flex;align-items:center;gap:14px;left:2.2%;top:8%;width:18%;height:82%;text-decoration:none;color:#fff}

@@ -2850,3 +2850,432 @@ body.check-in-open .hero-capabilities{opacity:0;visibility:hidden;pointer-events
 
 /* Align the check-in panel slightly lower, like the reference composition. */
 .welcome-modal{top:55%;}
+
+
+/* ==========================================================
+   FULL-BLEED PORTRAIT + LAYERED LAVENDER ATMOSPHERE
+   Actual portrait first, soft color grade second, UI on top.
+   ========================================================== */
+:root{--portfolio-header-height:clamp(80px,10.2vh,96px)}
+html,body{width:100%;max-width:100%;margin:0;overflow-x:hidden}
+body.check-in-open{overflow:hidden}
+main{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  max-width:100%!important;
+  height:calc(100svh - var(--portfolio-header-height))!important;
+  min-height:0!important;
+  margin:var(--portfolio-header-height) 0 0!important;
+  overflow:hidden!important;
+}
+.topbar{
+  position:absolute!important;
+  inset:0 0 auto!important;
+  z-index:40!important;
+  width:100%!important;
+  height:var(--portfolio-header-height)!important;
+  min-height:var(--portfolio-header-height)!important;
+  border-bottom:1px solid rgba(226,198,255,.28)!important;
+  background:linear-gradient(180deg,rgba(14,8,43,.84),rgba(20,12,52,.60))!important;
+  backdrop-filter:blur(18px) saturate(1.22)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(1.22)!important;
+}
+#home{
+  position:relative!important;
+  isolation:isolate!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:#62527f!important;
+}
+/* A blurred enlargement of the same real photo quietly fills the far right. */
+#home::before{
+  content:"";
+  position:absolute;
+  z-index:0;
+  inset:-24px;
+  background:url("assets/avatar-le-tam-hiep.webp") center 42%/cover no-repeat;
+  filter:blur(22px) saturate(1.18);
+  opacity:.72;
+  transform:scale(1.045);
+  pointer-events:none;
+}
+/* The crisp portrait remains a separate, undistorted layer on the left. */
+#home>.reference-art{
+  position:absolute!important;
+  z-index:1!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  background-color:transparent!important;
+  background-image:url("assets/avatar-le-tam-hiep.webp")!important;
+  background-size:auto 132%!important;
+  background-position:left 43%!important;
+  background-repeat:no-repeat!important;
+  transform:none!important;
+  filter:saturate(1.04) contrast(1.015)!important;
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 36%,rgba(0,0,0,.96) 44%,rgba(0,0,0,.64) 52%,rgba(0,0,0,.16) 62%,transparent 69%)!important;
+  mask-image:linear-gradient(90deg,#000 0%,#000 36%,rgba(0,0,0,.96) 44%,rgba(0,0,0,.64) 52%,rgba(0,0,0,.16) 62%,transparent 69%)!important;
+}
+/* Lavender color grade is an overlay, not a replacement for the photo. */
+#home>.art-vignette{
+  position:absolute!important;
+  z-index:2!important;
+  inset:0!important;
+  pointer-events:none!important;
+  background:
+    radial-gradient(ellipse at 4% 8%,rgba(220,157,255,.17),transparent 29%),
+    radial-gradient(ellipse at 92% 89%,rgba(195,137,255,.29),transparent 36%),
+    linear-gradient(90deg,rgba(34,14,66,.02) 0%,rgba(56,27,91,.06) 34%,rgba(100,69,145,.34) 57%,rgba(66,49,117,.66) 100%),
+    linear-gradient(180deg,rgba(22,11,48,.06) 0%,transparent 32%,rgba(45,22,77,.18) 100%)!important;
+  mix-blend-mode:normal!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+#home .hero-floral-overlay{
+  position:absolute!important;
+  z-index:3!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  opacity:.72!important;
+  mix-blend-mode:screen!important;
+  pointer-events:none!important;
+}
+#home .ambient-stars{
+  position:absolute!important;
+  z-index:4!important;
+  inset:0!important;
+  pointer-events:none!important;
+}
+#home .ambient-stars i{
+  width:3px!important;height:3px!important;
+  background:#fff3dc!important;
+  box-shadow:0 0 12px 4px rgba(230,183,255,.76)!important;
+}
+#home .ambient-petals{
+  position:absolute!important;
+  z-index:4!important;
+  inset:0!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+}
+#home .ambient-petals i{
+  position:absolute;
+  display:block;
+  width:15px;height:9px;
+  border-radius:100% 0 100% 0;
+  background:linear-gradient(135deg,rgba(255,232,255,.96),rgba(218,147,255,.78) 54%,rgba(159,91,206,.25));
+  box-shadow:0 0 15px rgba(234,174,255,.42);
+  opacity:0;
+  animation:checkin-petal-drift 17s ease-in-out infinite;
+}
+#home .ambient-petals i:nth-child(1){left:8%;top:66%;animation-delay:-3s;animation-duration:19s}
+#home .ambient-petals i:nth-child(2){left:27%;top:27%;animation-delay:-11s;animation-duration:22s;transform:scale(.78)}
+#home .ambient-petals i:nth-child(3){left:44%;top:74%;animation-delay:-7s;animation-duration:20s;transform:scale(.86)}
+#home .ambient-petals i:nth-child(4){left:62%;top:17%;animation-delay:-14s;animation-duration:24s;transform:scale(.7)}
+#home .ambient-petals i:nth-child(5){left:77%;top:61%;animation-delay:-5s;animation-duration:21s;transform:scale(.9)}
+#home .ambient-petals i:nth-child(6){left:89%;top:36%;animation-delay:-17s;animation-duration:23s;transform:scale(.72)}
+#home .ambient-petals i:nth-child(7){left:54%;top:88%;animation-delay:-9s;animation-duration:18s;transform:scale(.65)}
+#home .ambient-petals i:nth-child(8){left:15%;top:47%;animation-delay:-13s;animation-duration:25s;transform:scale(.62)}
+@keyframes checkin-petal-drift{
+  0%{opacity:0;transform:translate3d(0,-22px,0) rotate(-22deg) scale(.72)}
+  15%{opacity:.74}
+  52%{opacity:.58;transform:translate3d(44px,80px,0) rotate(110deg) scale(1)}
+  85%{opacity:.45}
+  100%{opacity:0;transform:translate3d(105px,170px,0) rotate(245deg) scale(.66)}
+}
+body.motion-paused #home .ambient-petals i{animation-play-state:paused!important}
+
+/* Guest card — centered vertically and aligned to the right, like the reference. */
+#home .welcome-overlay{
+  position:absolute!important;
+  z-index:20!important;
+  inset:0!important;
+  display:flex!important;
+  justify-content:flex-end!important;
+  align-items:center!important;
+  padding:24px clamp(32px,9.4vw,174px) 24px clamp(24px,4vw,72px)!important;
+  background:transparent!important;
+  overflow:visible!important;
+}
+#home .welcome-backdrop{
+  position:absolute!important;
+  inset:0!important;
+  background:linear-gradient(90deg,transparent 40%,rgba(33,17,67,.08) 58%,rgba(31,18,67,.10) 100%)!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  pointer-events:none!important;
+}
+#home .welcome-modal{
+  position:relative!important;
+  top:auto!important;
+  right:auto!important;
+  left:auto!important;
+  transform:none!important;
+  flex:0 1 auto!important;
+  width:min(700px,38vw)!important;
+  min-width:0!important;
+  max-width:700px!important;
+  height:auto!important;
+  max-height:calc(100% - 16px)!important;
+  overflow:visible!important;
+  margin:0!important;
+  padding:clamp(37px,4.2vh,47px) clamp(28px,2.35vw,43px) clamp(21px,2.8vh,29px)!important;
+  border:1px solid rgba(224,194,255,.86)!important;
+  border-radius:22px!important;
+  background:
+    radial-gradient(ellipse at 50% 0%,rgba(185,132,255,.23),transparent 44%),
+    linear-gradient(145deg,rgba(34,23,83,.79),rgba(18,17,63,.83) 58%,rgba(43,28,91,.78))!important;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.12),
+    0 0 28px rgba(187,126,255,.48),
+    0 0 76px rgba(165,113,255,.22),
+    inset 0 0 34px rgba(206,169,255,.12),
+    inset 0 1px 0 rgba(255,255,255,.18)!important;
+  backdrop-filter:blur(24px) saturate(1.18)!important;
+  -webkit-backdrop-filter:blur(24px) saturate(1.18)!important;
+}
+#home .welcome-modal:before{
+  top:18px!important;
+  width:clamp(116px,13vw,190px)!important;
+  height:1px!important;
+  background:linear-gradient(90deg,transparent,rgba(255,224,174,.95),transparent)!important;
+}
+#home .welcome-modal:after{
+  bottom:13px!important;
+  width:clamp(140px,15vw,205px)!important;
+  height:1px!important;
+  background:linear-gradient(90deg,transparent,rgba(255,224,174,.7),transparent)!important;
+}
+#home .modal-emblem{
+  top:-29px!important;
+  width:59px!important;height:59px!important;
+  border:1px solid rgba(255,224,173,.96)!important;
+  background:radial-gradient(circle at 50% 35%,rgba(123,81,190,.98),rgba(24,17,64,.98) 74%)!important;
+  box-shadow:0 0 0 5px rgba(186,136,255,.13),0 0 30px rgba(230,181,255,.8)!important;
+}
+#home .modal-kicker{
+  margin:7px 0 13px!important;
+  color:#eadbff!important;
+  font-size:clamp(8px,.58vw,10px)!important;
+  letter-spacing:.2em!important;
+}
+#home .welcome-modal h1{
+  margin:0!important;
+  color:#fffaff!important;
+  font-size:clamp(31px,2.45vw,43px)!important;
+  line-height:1.04!important;
+  text-shadow:0 2px 20px rgba(38,14,64,.35)!important;
+}
+#home .welcome-modal h1 em{
+  color:#e1c4ff!important;
+  text-shadow:0 0 18px rgba(207,158,255,.48)!important;
+}
+#home .modal-description{
+  max-width:520px!important;
+  margin:13px auto 19px!important;
+  color:rgba(250,241,255,.94)!important;
+  font-size:clamp(10px,.73vw,13px)!important;
+  line-height:1.65!important;
+}
+#home .welcome-modal form{margin:0!important}
+#home .welcome-modal form>label,
+#home .birth-year-field>label,
+#home .gender-field-wrap>label{
+  margin:11px 0 6px!important;
+  color:#fff5ff!important;
+  font-size:clamp(10px,.7vw,12px)!important;
+  line-height:1.35!important;
+  font-weight:650!important;
+}
+#home .welcome-modal form>.input-shell,
+#home .birth-year-field>.input-shell,
+#home .gender-field-wrap>.input-shell{
+  height:clamp(45px,5.25vh,53px)!important;
+  min-height:45px!important;
+  margin-bottom:7px!important;
+  padding:0 15px!important;
+  border:1px solid rgba(190,157,255,.78)!important;
+  border-radius:13px!important;
+  background:rgba(10,11,45,.58)!important;
+  box-shadow:inset 0 1px 8px rgba(5,4,25,.25),0 0 15px rgba(161,111,255,.12)!important;
+}
+#home .input-shell:focus-within{
+  border-color:rgba(239,211,255,.98)!important;
+  box-shadow:0 0 0 2px rgba(191,137,255,.22),0 0 24px rgba(186,130,255,.26)!important;
+}
+#home .input-shell>span{color:#dfc5ff!important}
+#home .input-shell input,
+#home .gender-trigger{
+  color:#fff!important;
+  font-size:clamp(11px,.77vw,14px)!important;
+}
+#home .input-shell input::placeholder{color:#c9bce3!important}
+#home .visitor-fields-row{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  gap:18px!important;
+  margin:0!important;
+}
+#home .birth-year-field,
+#home .gender-field-wrap{min-width:0!important}
+#home .gender-field-wrap .input-shell{margin-bottom:7px!important}
+#home .gender-trigger{width:100%!important;height:100%!important;text-align:left!important}
+#home .gender-options{z-index:50!important}
+#home .form-error{min-height:13px!important;margin:2px 0 1px!important}
+#home .modal-submit{
+  width:100%!important;
+  height:clamp(50px,6.2vh,61px)!important;
+  min-height:50px!important;
+  margin:9px auto 0!important;
+  border:1px solid rgba(255,226,180,.96)!important;
+  border-radius:999px!important;
+  background:linear-gradient(100deg,#b15feb 0%,#8f68f1 56%,#9b9aff 100%)!important;
+  box-shadow:0 0 0 1px rgba(255,255,255,.14),0 0 28px rgba(187,130,255,.56),inset 0 1px 0 rgba(255,255,255,.32)!important;
+  font-size:clamp(12px,.87vw,15px)!important;
+}
+#home .modal-submit:hover{filter:brightness(1.1)!important;transform:translateY(-1px)!important}
+#home .privacy-note{
+  margin:12px 0 0!important;
+  color:rgba(236,222,255,.88)!important;
+  font-size:clamp(8px,.55vw,10px)!important;
+  line-height:1.45!important;
+}
+
+/* Supporting details around the hero: scroll prompt, timeline and petals. */
+#home .side-ornament{
+  z-index:7!important;
+  right:2.8%!important;
+  top:39%!important;
+  height:43%!important;
+  opacity:.96!important;
+}
+#home .scroll-hotspot{
+  z-index:12!important;
+  left:2.5%!important;
+  bottom:2.5%!important;
+  width:auto!important;
+  min-width:285px!important;
+  height:58px!important;
+  padding:0 21px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:12px!important;
+  border:1px solid rgba(229,193,255,.74)!important;
+  border-radius:17px!important;
+  color:#fff8ff!important;
+  background:linear-gradient(115deg,rgba(50,28,99,.66),rgba(139,98,183,.42))!important;
+  box-shadow:0 0 22px rgba(184,122,255,.28),inset 0 1px rgba(255,255,255,.15)!important;
+  backdrop-filter:blur(14px)!important;
+  -webkit-backdrop-filter:blur(14px)!important;
+  font-size:13px!important;
+}
+body.check-in-open #home .scroll-hotspot{
+  visibility:visible!important;
+  opacity:1!important;
+  pointer-events:auto!important;
+}
+body.check-in-open #home .availability-badge{
+  visibility:hidden!important;
+  opacity:0!important;
+}
+
+/* Compact landscape laptops: preserve both columns and keep the form usable. */
+@media(min-width:761px) and (max-width:1100px){
+  :root{--portfolio-header-height:clamp(72px,10vh,88px)}
+  #home>.reference-art{background-size:auto 122%!important;background-position:left 43%!important}
+  #home .welcome-overlay{padding:18px 24px 18px 20px!important}
+  #home .welcome-modal{
+    width:min(510px,47vw)!important;
+    padding:36px 25px 19px!important;
+  }
+  #home .welcome-modal h1{font-size:clamp(27px,3vw,34px)!important}
+  #home .modal-description{margin:9px auto 12px!important;font-size:10px!important}
+  #home .welcome-modal form>label,
+  #home .birth-year-field>label,
+  #home .gender-field-wrap>label{margin:7px 0 4px!important}
+  #home .welcome-modal form>.input-shell,
+  #home .birth-year-field>.input-shell,
+  #home .gender-field-wrap>.input-shell{height:42px!important;min-height:42px!important}
+  #home .visitor-fields-row{gap:10px!important}
+  #home .modal-submit{height:47px!important;min-height:47px!important;margin-top:6px!important}
+  #home .privacy-note{margin-top:7px!important}
+  #home .scroll-hotspot{min-width:245px!important;height:48px!important;font-size:11px!important}
+}
+
+/* Short screens get a denser card instead of an inner desktop scrollbar. */
+@media(min-width:761px) and (max-height:740px){
+  #home .welcome-modal{padding-top:32px!important;padding-bottom:17px!important}
+  #home .modal-kicker{margin:4px 0 8px!important}
+  #home .welcome-modal h1{font-size:clamp(28px,2.1vw,35px)!important}
+  #home .modal-description{margin:7px auto 10px!important;line-height:1.45!important}
+  #home .welcome-modal form>label,
+  #home .birth-year-field>label,
+  #home .gender-field-wrap>label{margin:5px 0 3px!important}
+  #home .welcome-modal form>.input-shell,
+  #home .birth-year-field>.input-shell,
+  #home .gender-field-wrap>.input-shell{height:39px!important;min-height:39px!important;margin-bottom:4px!important}
+  #home .modal-submit{height:43px!important;min-height:43px!important;margin-top:4px!important}
+  #home .privacy-note{margin-top:5px!important}
+}
+
+/* Mobile: the photo stays behind the form; only this narrow layout may scroll. */
+@media(max-width:760px){
+  :root{--portfolio-header-height:112px}
+  main{height:calc(100svh - var(--portfolio-header-height))!important}
+  #home::before{background-position:26% 25%!important;filter:blur(13px) saturate(1.1)!important}
+  #home>.reference-art{
+    background-size:auto 82%!important;
+    background-position:left top!important;
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 45%,rgba(0,0,0,.42) 66%,transparent 83%)!important;
+    mask-image:linear-gradient(180deg,#000 0%,#000 45%,rgba(0,0,0,.42) 66%,transparent 83%)!important;
+  }
+  #home>.art-vignette{
+    background:
+      linear-gradient(180deg,rgba(28,12,58,.08),rgba(42,21,77,.16) 34%,rgba(35,19,73,.7) 100%),
+      radial-gradient(ellipse at 15% 8%,rgba(228,166,255,.2),transparent 38%)!important;
+  }
+  #home .hero-floral-overlay{opacity:.48!important}
+  #home .welcome-overlay{
+    display:grid!important;
+    place-items:center!important;
+    padding:10px!important;
+  }
+  #home .welcome-backdrop{background:rgba(17,10,46,.30)!important}
+  #home .welcome-modal{
+    width:min(490px,calc(100vw - 24px))!important;
+    max-width:490px!important;
+    max-height:calc(100% - 18px)!important;
+    overflow:auto!important;
+    padding:43px 18px 17px!important;
+    border-radius:20px!important;
+  }
+  #home .welcome-modal h1{font-size:28px!important}
+  #home .modal-description{font-size:10px!important;margin:8px auto 11px!important}
+  #home .welcome-modal form>label,
+  #home .birth-year-field>label,
+  #home .gender-field-wrap>label{margin:6px 0 3px!important}
+  #home .welcome-modal form>.input-shell,
+  #home .birth-year-field>.input-shell,
+  #home .gender-field-wrap>.input-shell{height:41px!important;min-height:41px!important}
+  #home .visitor-fields-row{gap:9px!important}
+  #home .modal-submit{height:47px!important;min-height:47px!important;margin-top:7px!important}
+  #home .privacy-note{margin-top:7px!important}
+  #home .scroll-hotspot{display:none!important}
+  #home .side-ornament{display:none!important}
+  #home .availability-badge{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #home .ambient-petals i{animation:none!important;opacity:.35!important}
+}

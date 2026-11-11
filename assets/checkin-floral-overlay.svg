@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1840" height="830" viewBox="0 0 1840 830" fill="none">
+  <defs>
+    <linearGradient id="twig" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f2c7ff" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#a873d7" stop-opacity=".12"/>
+    </linearGradient>
+    <radialGradient id="petal" cx="0" cy="0" r="1" gradientTransform="matrix(0 1 1 0 0 0)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff0ff" stop-opacity=".92"/>
+      <stop offset=".55" stop-color="#e6aaff" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#b66bd8" stop-opacity=".12"/>
+    </radialGradient>
+    <radialGradient id="center" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff7dc"/>
+      <stop offset="1" stop-color="#f1bd91" stop-opacity=".18"/>
+    </radialGradient>
+    <filter id="soft" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <g id="bloom">
+      <ellipse cy="-16" rx="9" ry="18" fill="url(#petal)"/>
+      <ellipse cy="-16" rx="9" ry="18" fill="url(#petal)" transform="rotate(72)"/>
+      <ellipse cy="-16" rx="9" ry="18" fill="url(#petal)" transform="rotate(144)"/>
+      <ellipse cy="-16" rx="9" ry="18" fill="url(#petal)" transform="rotate(216)"/>
+      <ellipse cy="-16" rx="9" ry="18" fill="url(#petal)" transform="rotate(288)"/>
+      <circle r="5.5" fill="url(#center)"/>
+    </g>
+    <g id="tinyBloom">
+      <ellipse cy="-10" rx="5.5" ry="11" fill="url(#petal)"/>
+      <ellipse cy="-10" rx="5.5" ry="11" fill="url(#petal)" transform="rotate(72)"/>
+      <ellipse cy="-10" rx="5.5" ry="11" fill="url(#petal)" transform="rotate(144)"/>
+      <ellipse cy="-10" rx="5.5" ry="11" fill="url(#petal)" transform="rotate(216)"/>
+      <ellipse cy="-10" rx="5.5" ry="11" fill="url(#petal)" transform="rotate(288)"/>
+      <circle r="3.5" fill="url(#center)"/>
+    </g>
+  </defs>
+
+  <!-- Upper-left cherry blossom branch; kept close to the frame edges. -->
+  <g opacity=".58">
+    <path d="M-45 278C83 245 106 185 186 136C253 95 307 60 374-26" stroke="url(#twig)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M63 234C104 187 124 145 133 92M174 143C224 154 258 150 301 113M238 97C227 57 228 30 241-7" stroke="url(#twig)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M38 249l-26-24m89-40-26-28m146-22 26-27m-36 7 14 30m57-84 30 9" stroke="#d9a9e8" stroke-opacity=".5" stroke-width="1.7" stroke-linecap="round"/>
+    <use href="#bloom" transform="translate(69 179) scale(1.05)"/>
+    <use href="#bloom" transform="translate(143 105) scale(.9)"/>
+    <use href="#bloom" transform="translate(222 125) scale(.78)"/>
+    <use href="#tinyBloom" transform="translate(292 62) scale(1.1)"/>
+    <use href="#tinyBloom" transform="translate(28 276) scale(.8)"/>
+  </g>
+
+  <!-- Soft flower bokeh around the bottom edge, not across the face or card. -->
+  <g opacity=".46" filter="url(#soft)">
+    <circle cx="26" cy="747" r="92" fill="#d78be9"/>
+    <circle cx="111" cy="798" r="64" fill="#f1b3ed"/>
+    <circle cx="1690" cy="813" r="112" fill="#ba80e9"/>
+    <circle cx="1802" cy="746" r="78" fill="#e5a2f1"/>
+    <circle cx="1450" cy="834" r="75" fill="#e8b3f0"/>
+  </g>
+  <g opacity=".44">
+    <path d="M-27 793C60 736 91 697 136 653M1662 850c40-61 96-99 205-133" stroke="url(#twig)" stroke-width="2.5" stroke-linecap="round"/>
+    <use href="#tinyBloom" transform="translate(38 733) scale(1.2)"/>
+    <use href="#bloom" transform="translate(112 786) scale(.74)"/>
+    <use href="#tinyBloom" transform="translate(1741 766) scale(1.15)"/>
+    <use href="#bloom" transform="translate(1800 704) scale(.78)"/>
+  </g>
+
+  <!-- A few soft, warm glints and a fine celestial sweep. -->
+  <path d="M1190 0C1390 20 1520 18 1685-18" stroke="#d9b4ff" stroke-opacity=".34" stroke-width="2" filter="url(#glow)"/>
+  <path d="M1294 0C1451 10 1581 3 1719-25" stroke="#fff0d1" stroke-opacity=".2" stroke-width="1"/>
+  <g fill="#f8d9ff" opacity=".64" filter="url(#glow)">
+    <circle cx="270" cy="74" r="2.4"/><circle cx="410" cy="26" r="1.8"/>
+    <circle cx="1518" cy="102" r="2"/><circle cx="1744" cy="254" r="2.2"/>
+    <circle cx="1548" cy="712" r="2"/><circle cx="295" cy="690" r="1.7"/>
+  </g>
+</svg>

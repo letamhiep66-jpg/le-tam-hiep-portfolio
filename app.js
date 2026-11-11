@@ -246,4 +246,3 @@ document.getElementById('downloadVCard').addEventListener('click', () => {
   showToast('Đã tải thông tin liên hệ.');
 });
 
-fields.company.focus({ preventScroll: true });

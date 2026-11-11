@@ -1392,3 +1392,193 @@ body.motion-paused .hero-capabilities article{
   .modal-kicker{letter-spacing:.11em;gap:6px}
   .modal-kicker span{width:19px}
 }
+
+
+/* ==========================================================
+   GUEST CHECK-IN REFINEMENT — right-side placement and clean
+   input focus. Keep all copy and controls inside the glass panel.
+   ========================================================== */
+.game-home{overflow:hidden}
+.welcome-overlay{
+  position:absolute !important;
+  inset:82px 0 0 !important;
+  z-index:20;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+  padding:18px clamp(28px,4.2vw,76px) 22px 0 !important;
+  pointer-events:none;
+}
+.welcome-backdrop{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,
+      rgba(5,6,27,0) 0%,
+      rgba(5,6,27,0) 43%,
+      rgba(5,6,27,.08) 63%,
+      rgba(5,6,27,.25) 100%);
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+.welcome-modal{
+  position:relative;
+  z-index:1;
+  flex:0 1 auto;
+  justify-self:auto;
+  width:min(490px,36vw);
+  min-width:390px;
+  max-width:490px;
+  max-height:calc(100svh - 122px);
+  box-sizing:border-box;
+  overflow-y:auto;
+  overflow-x:hidden;
+  overscroll-behavior:contain;
+  padding:54px clamp(25px,2.1vw,32px) 21px;
+  margin:0;
+  border:1px solid rgba(208,177,255,.76);
+  border-radius:22px;
+  background:linear-gradient(148deg,rgba(15,15,55,.96),rgba(9,11,40,.96) 62%,rgba(20,14,55,.97));
+  box-shadow:0 0 0 1px rgba(235,211,255,.11),0 0 42px rgba(151,105,255,.38),inset 0 0 32px rgba(149,108,255,.09);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  pointer-events:auto;
+}
+.welcome-modal h1{font-size:clamp(27px,2.05vw,33px);line-height:1.08}
+.modal-kicker{font-size:8px;letter-spacing:.15em;margin:3px 0 9px}
+.modal-description{font-size:10px;line-height:1.55;margin:8px 0 13px}
+.welcome-modal form{display:flex;flex-direction:column;width:100%;min-width:0}
+.welcome-modal form>label{margin:7px 0 4px;font-size:10px;line-height:1.35}
+.welcome-modal form>.input-shell{
+  display:flex;
+  align-items:center;
+  width:100%;
+  min-width:0;
+  height:45px;
+  min-height:45px;
+  box-sizing:border-box;
+  margin:0 0 5px;
+  padding:0 13px;
+  border:1px solid rgba(175,151,235,.48);
+  border-radius:11px;
+  background:rgba(7,9,34,.9);
+}
+.input-shell>span{flex:0 0 19px;text-align:center}
+.input-shell input,.input-shell select{
+  flex:1 1 auto;
+  width:100%;
+  min-width:0;
+  height:100%;
+  box-sizing:border-box;
+  border:0 !important;
+  outline:0 !important;
+  outline-offset:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+  color:#fff;
+  caret-color:#e6d3ff;
+  font-size:11px;
+  -webkit-appearance:none;
+  appearance:none;
+}
+.input-shell input::placeholder{color:#978cad;opacity:1}
+.input-shell:focus-within{
+  border-color:rgba(193,160,255,.9) !important;
+  background:rgba(8,10,39,.98) !important;
+  box-shadow:0 0 0 2px rgba(155,112,255,.16),0 0 18px rgba(158,121,255,.2) !important;
+}
+#company:focus,#company:focus-visible,
+#visitorName:focus,#visitorName:focus-visible,
+#gender:focus,#gender:focus-visible{
+  outline:none !important;
+  outline-color:transparent !important;
+  outline-offset:0 !important;
+  box-shadow:none !important;
+}
+.input-shell input:-webkit-autofill,
+.input-shell input:-webkit-autofill:hover,
+.input-shell input:-webkit-autofill:focus{
+  -webkit-text-fill-color:#fff !important;
+  -webkit-box-shadow:0 0 0 1000px rgba(7,9,34,.98) inset !important;
+  caret-color:#e6d3ff;
+  transition:background-color 9999s ease-out 0s;
+}
+.gender-field{margin:0 0 4px}
+.gender-field select{cursor:pointer}
+.form-error{min-height:0;margin:2px 0 4px;font-size:9px;line-height:1.4}
+.modal-submit{
+  width:100%;
+  min-height:49px;
+  height:49px;
+  margin:5px 0 0;
+  box-sizing:border-box;
+  border-radius:999px;
+}
+.privacy-note{margin:9px 0 0;font-size:8px;line-height:1.45;text-align:center}
+
+/* On smaller desktop widths, retain the right-hand placement with a
+   slightly narrower card and compact typography. */
+@media(min-width:761px) and (max-width:1100px){
+  .welcome-overlay{
+    position:absolute !important;
+    inset:112px 0 0 !important;
+    display:flex !important;
+    justify-content:flex-end !important;
+    align-items:center !important;
+    padding:12px 20px 16px 0 !important;
+  }
+  .welcome-modal{
+    width:min(420px,43vw);
+    min-width:350px;
+    max-width:420px;
+    max-height:calc(100svh - 132px);
+    padding:48px 23px 18px;
+  }
+  .welcome-modal h1{font-size:27px}
+  .modal-description{font-size:9px;margin:7px 0 10px}
+  .welcome-modal form>label{margin:5px 0 3px}
+  .welcome-modal form>.input-shell{height:41px;min-height:41px;margin-bottom:3px}
+  .modal-submit{height:44px;min-height:44px}
+  .privacy-note{margin-top:7px;font-size:7px}
+}
+
+/* On phones the check-in is centered so the controls remain usable. */
+@media(max-width:760px){
+  .welcome-overlay{
+    position:fixed !important;
+    inset:0 !important;
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) !important;
+    place-items:center !important;
+    justify-content:center !important;
+    align-items:center !important;
+    padding:14px !important;
+  }
+  .welcome-backdrop{
+    background:rgba(5,6,27,.6);
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+  }
+  .welcome-modal{
+    justify-self:center;
+    width:min(460px,calc(100vw - 28px));
+    min-width:0;
+    max-width:460px;
+    max-height:calc(100svh - 28px);
+    padding:50px 21px 20px;
+    overflow-y:auto;
+  }
+  .welcome-modal h1{font-size:29px}
+  .modal-description{font-size:10px;margin:8px 0 12px}
+  .welcome-modal form>label{margin:6px 0 4px}
+  .welcome-modal form>.input-shell{height:43px;min-height:43px;margin-bottom:4px}
+  .modal-submit{height:46px;min-height:46px}
+  .privacy-note{font-size:7px;margin-top:8px}
+}
+@media(max-width:380px){
+  .welcome-modal{padding:46px 17px 17px}
+  .welcome-modal h1{font-size:26px}
+  .modal-kicker{letter-spacing:.11em;gap:6px}
+}

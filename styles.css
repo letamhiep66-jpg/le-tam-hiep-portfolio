@@ -2899,11 +2899,14 @@ main{
   content:"";
   position:absolute;
   z-index:0;
-  inset:-24px;
-  background:url("assets/avatar-le-tam-hiep.webp") center 42%/cover no-repeat;
-  filter:blur(22px) saturate(1.18);
-  opacity:.72;
-  transform:scale(1.045);
+  inset:0 0 0 39%;
+  background-image:url("assets/avatar-le-tam-hiep.webp");
+  background-size:250% 100%;
+  background-position:right center;
+  background-repeat:no-repeat;
+  filter:blur(24px) saturate(1.2);
+  opacity:.84;
+  transform:scale(1.035);
   pointer-events:none;
 }
 /* The crisp portrait remains a separate, undistorted layer on the left. */
@@ -3234,7 +3237,7 @@ body.check-in-open #home .availability-badge{
 @media(max-width:760px){
   :root{--portfolio-header-height:112px}
   main{height:calc(100svh - var(--portfolio-header-height))!important}
-  #home::before{background-position:26% 25%!important;filter:blur(13px) saturate(1.1)!important}
+  #home::before{inset:0!important;background-size:cover!important;background-position:70% 35%!important;filter:blur(15px) saturate(1.12)!important;opacity:.72!important}
   #home>.reference-art{
     background-size:auto 82%!important;
     background-position:left top!important;
